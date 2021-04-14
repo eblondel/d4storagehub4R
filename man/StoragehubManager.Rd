@@ -55,7 +55,7 @@ Main user class to be used with \pkg{d4storagehub4R}
  \item{\code{createFolder(folderPath, name, description, hidden)}}{
    Creates a folder
  }
- \item{\code{uploadFile(folderPath, file, description)}}{
+ \item{\code{uploadFile(folderPath, file, description, archive)}}{
    Uploads a file
  }
 }

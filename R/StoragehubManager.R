@@ -42,7 +42,7 @@
 #'  \item{\code{createFolder(folderPath, name, description, hidden)}}{
 #'    Creates a folder
 #'  }
-#'  \item{\code{uploadFile(folderPath, file, description)}}{
+#'  \item{\code{uploadFile(folderPath, file, description, archive)}}{
 #'    Uploads a file
 #'  }
 #' }
@@ -254,7 +254,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     },
     
     #uploadFile
-    uploadFile = function(folderPath = NULL, file, description = basename(file)){
+    uploadFile = function(folderPath = NULL, file, description = basename(file), archive = FALSE){
       
       if(is.null(folderPath)) folderPath = self$getUserWorkspace()
       
