@@ -122,7 +122,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
       self$INFO("Fetching workspace endpoint...")
       icproxy = paste0(private$url_icproxy, "?gcube-token=", self$getToken())
       xml = xmlParse(httr::content(httr::GET(icproxy), "text"))
-      private$url_storagehub = xpathSApply(xml, "//Endpoint", xmlValue)[1]
+      private$url_storagehub = XML::xpathSApply(xml, "//Endpoint", xmlValue)[1]
     },
     
     #fetchUserProfile
