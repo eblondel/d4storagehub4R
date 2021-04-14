@@ -29,7 +29,34 @@ Main user class to be used with \pkg{d4storagehub4R}
    (for complete curl http calls logs)
  }
  \item{\code{getToken()}}{
-   Get Zenodo user token.
+   Get user token.
+ }
+ \item{\code{getUserProfile()}}{
+   Get user profile.
+ }
+ \item{\code{getUserWorkspace()}}{
+   Get user workspace root path.
+ }
+ \item{\code{getWSRootID()}}{
+   Get workspace root ID
+ }
+ \item{\code{getWSElementID(parentFolderID, folderPath)}}{
+   Get workspace element ID
+ }
+ \item{\code{listWSElements(parentFolderID)}}{
+   Lists workspace elements given a parentFolder ID
+ }
+ \item{\code{listWSElementsByPath(folderPath)}}{
+   Lists workspace elements given a folder path
+ }
+ \item{\code{searchWSFolderID(folderPath)}}{
+   Searchs a folder ID based on folder path
+ }
+ \item{\code{createFolder(folderPath, name, description, hidden)}}{
+   Creates a folder
+ }
+ \item{\code{uploadFile(folderPath, file, description)}}{
+   Uploads a file
  }
 }
 }

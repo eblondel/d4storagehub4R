@@ -6,6 +6,10 @@
 #' @import R6
 #' @import methods
 #' @import httr
+#' @import jsonlite
+#' @import XML
+#' @import keyring
+#' @import tools
 #' 
 #' @title R interface to the D4Science StorageHub/Workspace API
 #' @description R interface to the D4Science StorageHub/Workspace API
