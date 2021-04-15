@@ -220,7 +220,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     
     #createFolder
     createFolder = function(folderPath = NULL, name, description = "", hidden = FALSE){
-      self$INFO(sprintf("Creating folder '%s at '%s'...", name, folderpath))
+      self$INFO(sprintf("Creating folder '%s at '%s'...", name, folderPath))
       if(is.null(folderPath)) folderPath = self$getUserWorkspace()
       pathID = self$searchWSFolderID(folderPath = folderPath)
       if(is.null(pathID)){
