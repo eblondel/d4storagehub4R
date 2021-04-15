@@ -121,7 +121,9 @@ StoragehubManager <-  R6Class("StoragehubManager",
     fetchWSEndpoint = function(){
       self$INFO("Fetching workspace endpoint...")
       icproxy = paste0(private$url_icproxy, "?gcube-token=", self$getToken())
-      xml = xmlParse(httr::content(httr::GET(icproxy), "text"))
+      icproxy_req <- httr::GET(icproxy)
+      httr::stop_for_status(icproxy_req)
+      xml = XML::xmlParse(httr::content(icproxy_req), "text")
       private$url_storagehub = XML::xpathSApply(xml, "//Endpoint", xmlValue)[1]
     },
     
@@ -129,7 +131,9 @@ StoragehubManager <-  R6Class("StoragehubManager",
     fetchUserProfile = function(){
       self$INFO("Fetching user profile...")
       user_profile_url = paste0(private$url_homelibrary, "/people/profile?gcube-token=", self$getToken())
-      user_profile = jsonlite::fromJSON(user_profile_url)
+      user_profile_req <- httr::GET(user_profile_url)
+      httr::stop_for_status(user_profile_req)
+      user_profile = httr::content(user_profile_req)
       private$user_profile = user_profile$result
       private$user_workspace = paste0("/Home/", private$user_profile$username, "/Workspace")
     },
@@ -215,7 +219,8 @@ StoragehubManager <-  R6Class("StoragehubManager",
     },
     
     #createFolder
-    createFolder = function(folderPath = NULL, name, description, hidden = FALSE){
+    createFolder = function(folderPath = NULL, name, description = "", hidden = FALSE){
+      self$INFO(sprintf("Creating folder '%s at '%s'...", name, folderpath))
       if(is.null(folderPath)) folderPath = self$getUserWorkspace()
       pathID = self$searchWSFolderID(folderPath = folderPath)
       if(is.null(pathID)){
@@ -255,7 +260,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     
     #uploadFile
     uploadFile = function(folderPath = NULL, file, description = basename(file), archive = FALSE){
-      
+      self$INFO(sprintf("Uploading file '%s' at '%s'...", file, folderPath))
       if(is.null(folderPath)) folderPath = self$getUserWorkspace()
       
       name = basename(file)
