@@ -58,6 +58,9 @@ Main user class to be used with \pkg{d4storagehub4R}
  \item{\code{uploadFile(folderPath, file, description, archive)}}{
    Uploads a file
  }
+ \item{\code{getPublicFileLink(path)}}{
+   Get a public link for a workspace resource
+ }
 }
 }
 

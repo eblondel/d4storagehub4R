@@ -45,6 +45,9 @@
 #'  \item{\code{uploadFile(folderPath, file, description, archive)}}{
 #'    Uploads a file
 #'  }
+#'  \item{\code{getPublicFileLink(path)}}{
+#'    Get a public link for a workspace resource
+#'  }
 #' }
 #' 
 #' @examples
@@ -313,6 +316,19 @@ StoragehubManager <-  R6Class("StoragehubManager",
       }
       
       return(fileID)
+    },
+    
+    #getPublicFileLink
+    getPublicFileLink = function(path){
+      pathID <- self$searchWSFolderID(path)
+      if(is.null(pathID)){
+        errMsg <- sprintf("No file for path '%s'", path)
+        self$ERROR(errMsg)
+        stop(errMsg)
+      }
+      link_url <- sprintf("%s/items/%s/publiclink?exclude=hl:accounting&gcube-token=%s", private$url_storagehub, pathID, self$getToken())
+      link <- jsonlite::fromJSON(link_url)
+      return(link)
     }
     
   )
