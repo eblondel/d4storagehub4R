@@ -39,7 +39,7 @@
 #'  \item{\code{searchWSFolderID(folderPath)}}{
 #'    Searchs a folder ID based on folder path
 #'  }
-#'  \item{\code{createFolder(folderPath, name, description, hidden)}}{
+#'  \item{\code{createFolder(folderPath, name, description, hidden, recursive)}}{
 #'    Creates a folder
 #'  }
 #'  \item{\code{uploadFile(folderPath, file, description, archive)}}{
@@ -222,30 +222,63 @@ StoragehubManager <-  R6Class("StoragehubManager",
     },
     
     #createFolder
-    createFolder = function(folderPath = NULL, name, description = "", hidden = FALSE){
+    createFolder = function(folderPath = NULL, name, description = "", 
+                            hidden = FALSE, recursive = TRUE){
       self$INFO(sprintf("Creating folder '%s at '%s'...", name, folderPath))
       if(is.null(folderPath)) folderPath = self$getUserWorkspace()
-      pathID = self$searchWSFolderID(folderPath = folderPath)
-      if(is.null(pathID)){
-        errMsg <- sprintf("No folder for path '%s'", folderPath)
-        self$ERROR(errMsg)
-        stop(errMsg)
-      }
       
-      req <- NULL
-      if(!self$verbose.debug){
-        req = httr::POST(
-          paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER?gcube-token=', self$getToken()),
-          body = list(
+      
+      if(recursive){
+        self$INFO("Recursive mode - Check parent folder(s) and create them if missing...")
+        folder_paths <- data.frame(folderPath = character(0), name = character(0), stringsAsFactors = FALSE)
+        if(folderPath == self$getUserWorkspace()){
+          folder_paths <- data.frame(
+            folderPath = folderPath,
             name = name,
-            description = description,
-            hidden = hidden
-          ),
-          encode = "form"
-        )
+            stringsAsFactors = FALSE
+          )
+        }else{
+          parent_folder <- folderPath
+          while(parent_folder != "."){
+            
+            folder_path <- data.frame(
+              folderPath = dirname(parent_folder),
+              name = basename(parent_folder),
+              stringsAsFactors = FALSE
+            )
+            parent_folder <- folder_path$folderPath
+            folder_paths <- rbind(folder_paths, folder_path)
+          }
+          folder_paths <- folder_paths[order(row.names(folder_paths), decreasing = T),]
+          folder_paths <- rbind(folder_paths,
+                                data.frame(
+                                  folderPath = folderPath,
+                                  name = name,
+                                  stringsAsFactors = FALSE
+                                ))
+          folder_paths[folder_paths$folderPath == ".",]$folderPath <- self$getUserWorkspace()
+        }
+        folderID <- NULL
+        for(i in 1:nrow(folder_paths)){
+          folder_path <- folder_paths[i,]
+          folderID <- self$createFolder(
+            folderPath = folder_path$folderPath,
+            name = folder_path$name,
+            recursive = FALSE
+          )
+        }
+        return(folderID)
+        
       }else{
-        req <- httr::with_verbose(
-          httr::POST(
+        pathID = self$searchWSFolderID(folderPath = folderPath)
+        if(is.null(pathID)){
+          errMsg <- sprintf("No folder for path '%s'", folderPath)
+          self$ERROR(errMsg)
+          stop(errMsg)
+        }
+        req <- NULL
+        if(!self$verbose.debug){
+          req = httr::POST(
             paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER?gcube-token=', self$getToken()),
             body = list(
               name = name,
@@ -254,11 +287,23 @@ StoragehubManager <-  R6Class("StoragehubManager",
             ),
             encode = "form"
           )
-        )
+        }else{
+          req <- httr::with_verbose(
+            httr::POST(
+              paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER?gcube-token=', self$getToken()),
+              body = list(
+                name = name,
+                description = description,
+                hidden = hidden
+              ),
+              encode = "form"
+            )
+          )
+        }
+        stop_for_status(req)
+        folderID <- content(req, "text")
+        return(folderID)
       }
-      stop_for_status(req)
-      folderID <- content(req, "text")
-      return(folderID)
     },
     
     #uploadFile
