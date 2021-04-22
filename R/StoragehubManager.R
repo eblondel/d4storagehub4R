@@ -261,11 +261,18 @@ StoragehubManager <-  R6Class("StoragehubManager",
         folderID <- NULL
         for(i in 1:nrow(folder_paths)){
           folder_path <- folder_paths[i,]
-          folderID <- self$createFolder(
-            folderPath = folder_path$folderPath,
-            name = folder_path$name,
-            recursive = FALSE
-          )
+          self$INFO(sprintf("Search for an existing folder '%s'", file.path(folder_path$folderPath, folder_path$name)))
+          folderID <- self$searchWSFolderID(folderPath = file.path(folder_path$folderPath, folder_path$name))
+          if(is.null(folderID)){
+            self$INFO(sprintf("Folder '%s' does not exist, we create it...", file.path(folder_path$folderPath, folder_path$name)))
+            folderID <- self$createFolder(
+              folderPath = folder_path$folderPath,
+              name = folder_path$name,
+              recursive = FALSE
+            )
+          }else{
+            self$WARN(sprintf("Folder '%s' already exist, skip creation...", file.path(folder_path$folderPath, folder_path$name)))
+          }
         }
         return(folderID)
         
