@@ -153,7 +153,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
       elements <- self$listWSElements(parentFolderID = parentFolderID)
       
       wsFolderID <- NULL
-      for (i in 1:nrow(elements)){
+      if(length(elements)>0) for (i in 1:nrow(elements)){
         el <- elements[i,]
         if (!startsWith(el$path,"/Share/")){
           el_path = el$path
