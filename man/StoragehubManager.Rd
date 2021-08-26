@@ -19,11 +19,13 @@ Main user class to be used with \pkg{d4storagehub4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(url, token, logger)}}{
+ \item{\code{new(token, keyring, logger)}}{
    This method is used to instantiate the \code{StoragehubManager}. By default,
    the url is inherited through D4Science Icproxy service.
    
    The token is mandatory in order to use Storage HUb API.
+   
+   By default, the token will be stored with keyring.
    
    The logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" 
    (for complete curl http calls logs)

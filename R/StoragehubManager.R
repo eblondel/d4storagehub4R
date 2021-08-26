@@ -6,11 +6,13 @@
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(url, token, logger)}}{
+#'  \item{\code{new(token, keyring, logger)}}{
 #'    This method is used to instantiate the \code{StoragehubManager}. By default,
 #'    the url is inherited through D4Science Icproxy service.
 #'    
 #'    The token is mandatory in order to use Storage HUb API.
+#'    
+#'    By default, the token will be stored with keyring.
 #'    
 #'    The logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" 
 #'    (for complete curl http calls logs)
@@ -67,7 +69,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     url_icproxy = "https://registry.d4science.org/icproxy/gcube/service/GCoreEndpoint/DataAccess/StorageHub",
     url_homelibrary = "https://socialnetworking1.d4science.org/social-networking-library-ws/rest/2",
     url_storagehub = NULL,
-    
+    token = NULL,
     #utils
     #normalizeFolderPath
     normalizeFolderPath = function(path){
@@ -89,15 +91,19 @@ StoragehubManager <-  R6Class("StoragehubManager",
     WARN = function(text){self$logger("WARN", text)},
     ERROR = function(text){self$logger("ERROR", text)},
     
-    initialize = function(token, logger = NULL){
+    initialize = function(token, keyring = TRUE, logger = NULL){
       super$initialize(logger = logger)
       if(!is.null(token)) if(nzchar(token)){
-        kb <- keyring::default_backend()
-        if(!"system" %in% kb$keyring_list()$keyring){
-          kb$.__enclos_env__$private$keyring_create_direct(keyring = "system", password = "")
+        if(keyring){
+          kb <- keyring::default_backend()
+          if(!"system" %in% kb$keyring_list()$keyring){
+            kb$.__enclos_env__$private$keyring_create_direct(keyring = "system", password = "")
+          }
+          private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
+          keyring::key_set_with_value(private$keyring_service, username = "d4storagehub4R", password = token)
+        }else{
+          private$token <- token
         }
-        private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
-        keyring::key_set_with_value(private$keyring_service, username = "d4storagehub4R", password = token)
         self$fetchWSEndpoint()
         self$fetchUserProfile()
       }else{
@@ -110,6 +116,8 @@ StoragehubManager <-  R6Class("StoragehubManager",
       token <- NULL
       if(!is.null(private$keyring_service)){
         token <- suppressWarnings(keyring::key_get(private$keyring_service, username = "d4storagehub4R"))
+      }else{
+        token <- private$token
       }
       return(token)
     },
