@@ -52,7 +52,7 @@ Main user class to be used with \pkg{d4storagehub4R}
  \item{\code{searchWSFolderID(folderPath)}}{
    Searchs a folder ID based on folder path
  }
- \item{\code{createFolder(folderPath, name, description, hidden)}}{
+ \item{\code{createFolder(folderPath, name, description, hidden, recursive)}}{
    Creates a folder
  }
  \item{\code{uploadFile(folderPath, file, description, archive)}}{
