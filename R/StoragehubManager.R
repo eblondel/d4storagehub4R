@@ -92,6 +92,10 @@ StoragehubManager <-  R6Class("StoragehubManager",
     initialize = function(token, logger = NULL){
       super$initialize(logger = logger)
       if(!is.null(token)) if(nzchar(token)){
+        kb <- keyring::default_backend()
+        if(!"system" %in% kb$keyring_list()$keyring){
+          kb$.__enclos_env__$private$keyring_create_direct(keyring = "system", password = "")
+        }
         private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
         keyring::key_set_with_value(private$keyring_service, username = "d4storagehub4R", password = token)
         self$fetchWSEndpoint()
