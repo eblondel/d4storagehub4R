@@ -19,7 +19,7 @@ Main user class to be used with \pkg{d4storagehub4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(token, keyring, logger)}}{
+ \item{\code{new(token, logger)}}{
    This method is used to instantiate the \code{StoragehubManager}. By default,
    the url is inherited through D4Science Icproxy service.
    

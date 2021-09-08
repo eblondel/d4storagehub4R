@@ -6,7 +6,7 @@
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(token, keyring, logger)}}{
+#'  \item{\code{new(token, logger)}}{
 #'    This method is used to instantiate the \code{StoragehubManager}. By default,
 #'    the url is inherited through D4Science Icproxy service.
 #'    
@@ -63,6 +63,7 @@
 StoragehubManager <-  R6Class("StoragehubManager",
   inherit = d4storagehub4RLogger,
   private = list(
+    keyring_backend = keyring::backend_env$new(),
     keyring_service = NULL,
     user_profile = NULL,
     user_workspace = NULL,
@@ -91,19 +92,11 @@ StoragehubManager <-  R6Class("StoragehubManager",
     WARN = function(text){self$logger("WARN", text)},
     ERROR = function(text){self$logger("ERROR", text)},
     
-    initialize = function(token, keyring = TRUE, logger = NULL){
+    initialize = function(token, logger = NULL){
       super$initialize(logger = logger)
       if(!is.null(token)) if(nzchar(token)){
-        if(keyring){
-          kb <- keyring::default_backend()
-          if(!"system" %in% kb$keyring_list()$keyring){
-            kb$.__enclos_env__$private$keyring_create_direct(keyring = "system", password = "")
-          }
-          private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
-          keyring::key_set_with_value(private$keyring_service, username = "d4storagehub4R", password = token)
-        }else{
-          private$token <- token
-        }
+        private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
+        private$keyring_backend$set_with_value(service = private$keyring_service, username = "d4storagehub4R", password = token)
         self$fetchWSEndpoint()
         self$fetchUserProfile()
       }else{
@@ -115,7 +108,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     getToken = function(){
       token <- NULL
       if(!is.null(private$keyring_service)){
-        token <- suppressWarnings(keyring::key_get(private$keyring_service, username = "d4storagehub4R"))
+        token <- suppressWarnings(private$keyring_backend$get(service = private$keyring_service, username = "d4storagehub4R"))
       }else{
         token <- private$token
       }
