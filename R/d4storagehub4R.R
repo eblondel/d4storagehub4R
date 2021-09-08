@@ -19,7 +19,7 @@
 #'    Package: \tab d4storagehub4R\cr
 #'    Type: \tab Package\cr
 #'    Version: \tab 0.1\cr
-#'    Date: \tab 2021-08-28\cr
+#'    Date: \tab 2021-09-08\cr
 #'    License: \tab MIT\cr
 #'    LazyLoad: \tab yes\cr
 #'  }
