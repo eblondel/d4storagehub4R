@@ -24,6 +24,6 @@
 #'    LazyLoad: \tab yes\cr
 #'  }
 #'  
-#'@author Emmanuel Blondel \email{emmanuel.blondel1@@gmail.com}
+#'@author Emmanuel Blondel \email{eblondel.pro@@gmail.com}
 #'
 NULL

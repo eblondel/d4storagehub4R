@@ -19,5 +19,5 @@ R interface to the D4Science StorageHub/Workspace API
  }
 }
 \author{
-Emmanuel Blondel \email{emmanuel.blondel1@gmail.com}
+Emmanuel Blondel \email{eblondel.pro@gmail.com}
 }
