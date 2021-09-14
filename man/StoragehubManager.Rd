@@ -19,13 +19,14 @@ Main user class to be used with \pkg{d4storagehub4R}
 \section{Methods}{
 
 \describe{
- \item{\code{new(token, logger)}}{
+ \item{\code{new(token, logger, keyring_backend)}}{
    This method is used to instantiate the \code{StoragehubManager}. By default,
    the url is inherited through D4Science Icproxy service.
    
-   The token is mandatory in order to use Storage HUb API.
+   The token is mandatory in order to use Storage Hub API.
    
-   By default, the token will be stored with keyring.
+   The \code{keyring_backend} can be set to use a different backend for storing 
+   the Zenodo token with \pkg{keyring} (Default value is 'env').
    
    The logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" 
    (for complete curl http calls logs)

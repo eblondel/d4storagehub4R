@@ -6,13 +6,14 @@
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
-#'  \item{\code{new(token, logger)}}{
+#'  \item{\code{new(token, logger, keyring_backend)}}{
 #'    This method is used to instantiate the \code{StoragehubManager}. By default,
 #'    the url is inherited through D4Science Icproxy service.
 #'    
-#'    The token is mandatory in order to use Storage HUb API.
+#'    The token is mandatory in order to use Storage Hub API.
 #'    
-#'    By default, the token will be stored with keyring.
+#'    The \code{keyring_backend} can be set to use a different backend for storing 
+#'    the Zenodo token with \pkg{keyring} (Default value is 'env').
 #'    
 #'    The logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" 
 #'    (for complete curl http calls logs)
@@ -63,7 +64,7 @@
 StoragehubManager <-  R6Class("StoragehubManager",
   inherit = d4storagehub4RLogger,
   private = list(
-    keyring_backend = keyring::backend_env$new(),
+    keyring_backend = NULL,
     keyring_service = NULL,
     user_profile = NULL,
     user_workspace = NULL,
@@ -92,9 +93,15 @@ StoragehubManager <-  R6Class("StoragehubManager",
     WARN = function(text){self$logger("WARN", text)},
     ERROR = function(text){self$logger("ERROR", text)},
     
-    initialize = function(token, logger = NULL){
+    initialize = function(token, logger = NULL, keyring_backend = 'env'){
       super$initialize(logger = logger)
       if(!is.null(token)) if(nzchar(token)){
+        if(!keyring_backend %in% names(keyring:::known_backends)){
+          errMsg <- sprintf("Backend '%s' is not a known keyring backend!", keyring_backend)
+          self$ERROR(errMsg)
+          stop(errMsg)
+        }
+        private$keyring_backend <- keyring:::known_backends[[keyring_backend]]$new()
         private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
         private$keyring_backend$set_with_value(service = private$keyring_service, username = "d4storagehub4R", password = token)
         self$fetchWSEndpoint()
