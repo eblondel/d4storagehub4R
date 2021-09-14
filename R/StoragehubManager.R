@@ -13,7 +13,7 @@
 #'    The token is mandatory in order to use Storage Hub API.
 #'    
 #'    The \code{keyring_backend} can be set to use a different backend for storing 
-#'    the Zenodo token with \pkg{keyring} (Default value is 'env').
+#'    the D4science gcube token with \pkg{keyring} (Default value is 'env').
 #'    
 #'    The logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" 
 #'    (for complete curl http calls logs)
