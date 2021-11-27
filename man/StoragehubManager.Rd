@@ -8,7 +8,7 @@
 \code{\link{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling an StoragehubManager
+Object of \code{\link{R6Class}} for modelling a D4Science StoragehubManager
 }
 \description{
 StoragehubManager
@@ -69,6 +69,10 @@ Main user class to be used with \pkg{d4storagehub4R}
 
 \examples{
 \dontrun{
+  manager <- StoragehubManager$new(
+    token = "<your token>",
+    logger = "DEBUG"
+  )
 }
 
 }

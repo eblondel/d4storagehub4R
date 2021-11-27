@@ -1,16 +1,17 @@
 Package: d4storagehub4R
 Version: 0.1
-Date: 2021-09-14
-Title: Interface to D4Science storage hub API
+Date: 2021-11-25
+Title: Interface to D4Science StorageHub API
 Authors@R: c(
-  person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "eblondel.pro@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")))
-Maintainer: Emmanuel Blondel <eblondel.pro@gmail.com>
+  person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")))
+Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 Depends: R (>= 3.3.0), methods
 Imports: R6, httr, jsonlite, XML, keyring, tools
 Suggests: testthat, parallel
-Description: Provides an interface to D4Science storage hub API.
+Description: Provides an interface to D4Science storage hub API. Allows to get user profile, and perform actions over the storage hub 
+ (workspace) including creation of folders, files management (upload/update/deletion/sharing), and listing of stored resources.
 License: MIT + file LICENSE
-URL: https://github.com/eblondel/d4storagehub4R
+URL: https://github.com/eblondel/d4storagehub4R, https://www.d4science.org/
 BugReports: https://github.com/eblondel/d4storagehub4R/issues
 LazyLoad: yes
 RoxygenNote: 7.1.1

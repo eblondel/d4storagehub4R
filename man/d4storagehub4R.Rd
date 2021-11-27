@@ -4,20 +4,21 @@
 \name{d4storagehub4R}
 \alias{d4storagehub4R}
 \alias{d4storagehub4R-package}
-\title{R interface to the D4Science StorageHub/Workspace API}
+\title{Interface to D4Science StorageHub API}
 \description{
-R interface to the D4Science StorageHub/Workspace API
+Provides an interface to D4Science storage hub API. Allows to get user profile, and perform actions over the storage hub 
+(workspace) including creation of folders, files management (upload/update/deletion/sharing), and listing of stored resources.
 }
 \details{
 \tabular{ll}{
    Package: \tab d4storagehub4R\cr
    Type: \tab Package\cr
    Version: \tab 0.1\cr
-   Date: \tab 2021-09-14\cr
+   Date: \tab 2021-11-25\cr
    License: \tab MIT\cr
    LazyLoad: \tab yes\cr
  }
 }
 \author{
-Emmanuel Blondel \email{eblondel.pro@gmail.com}
+Emmanuel Blondel \email{emmanuel.blondel1@gmail.com}
 }

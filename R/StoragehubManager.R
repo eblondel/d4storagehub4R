@@ -2,7 +2,7 @@
 #' @docType class
 #' @export
 #' @keywords storagehub manager
-#' @return Object of \code{\link{R6Class}} for modelling an StoragehubManager
+#' @return Object of \code{\link{R6Class}} for modelling a D4Science StoragehubManager
 #' @format \code{\link{R6Class}} object.
 #' @section Methods:
 #' \describe{
@@ -55,6 +55,10 @@
 #' 
 #' @examples
 #' \dontrun{
+#'   manager <- StoragehubManager$new(
+#'     token = "<your token>",
+#'     logger = "DEBUG"
+#'   )
 #' }
 #' 
 #' @note Main user class to be used with \pkg{d4storagehub4R}
@@ -93,6 +97,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     WARN = function(text){self$logger("WARN", text)},
     ERROR = function(text){self$logger("ERROR", text)},
     
+    #initialize
     initialize = function(token, logger = NULL, keyring_backend = 'env'){
       super$initialize(logger = logger)
       if(!is.null(token)) if(nzchar(token)){
