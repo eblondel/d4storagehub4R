@@ -4,7 +4,7 @@
 \name{d4storagehub4R}
 \alias{d4storagehub4R}
 \alias{d4storagehub4R-package}
-\title{Interface to D4Science StorageHub API}
+\title{Interface to 'D4Science' 'StorageHub' API}
 \description{
 Provides an interface to 'D4Science' 'StorageHub' API (<https://dev.d4science.org/>). Allows to get user profile, and perform 
 actions over the 'StorageHub' (workspace) including creation of folders, files management (upload/update/deletion/sharing), and listing of 
