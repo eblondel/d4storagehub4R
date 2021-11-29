@@ -43,23 +43,39 @@ Main user class to be used with \pkg{d4storagehub4R}
  \item{\code{getWSRootID()}}{
    Get workspace root ID
  }
+ \item{\code{getWSItemID(parentFolderID, folderPath)}}{
+   Get workspace item ID
+ }
  \item{\code{getWSElementID(parentFolderID, folderPath)}}{
-   Get workspace element ID
+   Get workspace element ID. Deprecated: use \code{getWSItemID}
+ }
+ \item{\code{listWSItems(parentFolderID)}}{
+   Lists workspace items given a parentFolder ID
  }
  \item{\code{listWSElements(parentFolderID)}}{
-   Lists workspace elements given a parentFolder ID
+   Lists workspace elements given a parentFolder ID. Deprecated: use \code{listWSItems}
+ }
+ \item{\code{listWSItemsByPath(folderPath)}}{
+   Lists workspace items given a folder path
  }
  \item{\code{listWSElementsByPath(folderPath)}}{
-   Lists workspace elements given a folder path
+   Lists workspace elements given a folder path. Deprecated: use \code{listWSItemsByPath}
+ }
+ \item{\code{searchWSItemID(itemPath)}}{
+   Searchs an element ID based on an element path
  }
  \item{\code{searchWSFolderID(folderPath)}}{
-   Searchs a folder ID based on folder path
+   Searchs a folder ID based on folder path. Deprecated: use \code{searchWSItemID}
  }
  \item{\code{createFolder(folderPath, name, description, hidden, recursive)}}{
    Creates a folder
  }
  \item{\code{uploadFile(folderPath, file, description, archive)}}{
    Uploads a file
+ }
+ \item{\code{deleteItem(itemPath, force)}}{
+   Deletes an item (folder or file) give its path on the workspace. By default \code{force = FALSE} 
+   meaning the item is moved to trash. To delete permanently the item, set \code{force = TRUE}.
  }
  \item{\code{getPublicFileLink(path)}}{
    Get a public link for a workspace resource

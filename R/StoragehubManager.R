@@ -30,23 +30,39 @@
 #'  \item{\code{getWSRootID()}}{
 #'    Get workspace root ID
 #'  }
+#'  \item{\code{getWSItemID(parentFolderID, folderPath)}}{
+#'    Get workspace item ID
+#'  }
 #'  \item{\code{getWSElementID(parentFolderID, folderPath)}}{
-#'    Get workspace element ID
+#'    Get workspace element ID. Deprecated: use \code{getWSItemID}
+#'  }
+#'  \item{\code{listWSItems(parentFolderID)}}{
+#'    Lists workspace items given a parentFolder ID
 #'  }
 #'  \item{\code{listWSElements(parentFolderID)}}{
-#'    Lists workspace elements given a parentFolder ID
+#'    Lists workspace elements given a parentFolder ID. Deprecated: use \code{listWSItems}
+#'  }
+#'  \item{\code{listWSItemsByPath(folderPath)}}{
+#'    Lists workspace items given a folder path
 #'  }
 #'  \item{\code{listWSElementsByPath(folderPath)}}{
-#'    Lists workspace elements given a folder path
+#'    Lists workspace elements given a folder path. Deprecated: use \code{listWSItemsByPath}
+#'  }
+#'  \item{\code{searchWSItemID(itemPath)}}{
+#'    Searchs an element ID based on an element path
 #'  }
 #'  \item{\code{searchWSFolderID(folderPath)}}{
-#'    Searchs a folder ID based on folder path
+#'    Searchs a folder ID based on folder path. Deprecated: use \code{searchWSItemID}
 #'  }
 #'  \item{\code{createFolder(folderPath, name, description, hidden, recursive)}}{
 #'    Creates a folder
 #'  }
 #'  \item{\code{uploadFile(folderPath, file, description, archive)}}{
 #'    Uploads a file
+#'  }
+#'  \item{\code{deleteItem(itemPath, force)}}{
+#'    Deletes an item (folder or file) give its path on the workspace. By default \code{force = FALSE} 
+#'    meaning the item is moved to trash. To delete permanently the item, set \code{force = TRUE}.
 #'  }
 #'  \item{\code{getPublicFileLink(path)}}{
 #'    Get a public link for a workspace resource
@@ -165,11 +181,11 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(rootDoc$item$id)
     },
     
-    #getWSElementID
-    getWSElementID = function(parentFolderID = NULL, folderPath){
-      elements <- self$listWSElements(parentFolderID = parentFolderID)
+    #getWSItemID
+    getWSItemID = function(parentFolderID = NULL, folderPath){
+      elements <- self$listWSItems(parentFolderID = parentFolderID)
       
-      wsFolderID <- NULL
+      wsItemID <- NULL
       if(length(elements)>0) for (i in 1:nrow(elements)){
         el <- elements[i,]
         if (!startsWith(el$path,"/Share/")){
@@ -181,7 +197,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
             folderPath = unlist(strsplit(folderPath, paste0(self$getUserWorkspace(),"/")))[2]
           }
           if (folderPath == el_path || folderPath == paste0("/",el$path)){
-            wsFolderID = el$id
+            wsItemID = el$id
             break
           }
         }else{
@@ -190,52 +206,75 @@ StoragehubManager <-  R6Class("StoragehubManager",
           el_ws_parts = unlist(strsplit(el$path, "/"))
           el_ws_folder = el_ws_parts[length(el_ws_parts)]
           if (folder == el_ws_folder){
-            wsFolderID<-el$id
+            wsItemID<-el$id
             break
           }
         }
       }
-      return(wsFolderID)
+      return(wsItemID)
       
     },
     
-    #listWSElements
-    listWSElements = function(parentFolderID = NULL){
+    #getWSElementID
+    getWSElementID = function(parentFolderID = NULL, folderPath){
+      self$WARN("Method 'getWSElementID' is deprecated, use method 'getWSItemID' instead!")
+      self$getWSItemID(parentFolderID = parentFolderID, folderPath = folderPath)
+    },
+    
+    #listWSItems
+    listWSItems = function(parentFolderID = NULL){
       if(is.null(parentFolderID)) parentFolderID = self$getWSRootID()
       listElementsUrl = paste0(private$url_storagehub, "/items/", parentFolderID, "/children?exclude=hl:accounting&gcube-token=", self$getToken())
       out = jsonlite::fromJSON(listElementsUrl)
       return(out$itemlist)
     },
     
-    #listWSElementsByPath
-    listWSElementsByPath = function(folderPath){
-      folderID <- self$searchWSFolderID(folderPath = folderPath)
-      if(is.null(folderID)) return(NULL)
-      self$listWSElements(parentFolderID = folderID)
+    #listWSElements
+    listWSElements = function(parentFolderID = NULL){
+      self$WARN("Method 'listWSElements' is deprecated, use method 'listWSItems' instead!")
+      self$listWSItems(parentFolderID = parentFolderID)
     },
     
-    #searchWSFolderID
-    searchWSFolderID = function(folderPath){
+    #listWSItemsByPath
+    listWSItemsByPath = function(folderPath){
+      folderID <- self$searchWSItemID(itemPath = folderPath)
+      if(is.null(folderID)) return(NULL)
+      self$listWSItems(parentFolderID = folderID)
+    },
+    
+    #listWSElementsByPath
+    listWSElementsByPath = function(folderPath){
+      self$WARN("Method 'listWSElementsByPath' is deprecated, use method 'listWSItemsByPath' instead!")
+      self$listWSItemsByPath(folderPath = folderPath)
+    },
+    
+    #searchWSItemID
+    searchWSItemID = function(itemPath){
       rootID = self$getWSRootID()
       root <- self$getUserWorkspace()
       
-      if (folderPath==paste("/Home/",self$getUserProfile()$username,"/Workspace",sep="") || 
-          folderPath==paste("/Home/",self$getUserProfile()$username,"/Workspace/",sep="")){
+      if (itemPath==paste("/Home/",self$getUserProfile()$username,"/Workspace",sep="") || 
+          itemPath==paste("/Home/",self$getUserProfile()$username,"/Workspace/",sep="")){
         return(rootID)
       }
       
-      path.splits <- unlist(strsplit(folderPath, "Workspace"))
-      if(length(path.splits)>1) folderPath <- path.splits[2]
-      allsubfolders = unlist(strsplit(folderPath, "/"))
+      path.splits <- unlist(strsplit(itemPath, "Workspace"))
+      if(length(path.splits)>1) itemPath <- path.splits[2]
+      allsubfolders = unlist(strsplit(itemPath, "/"))
       allsubfolders = allsubfolders[nzchar(allsubfolders)]
       
       parentID = rootID
       parentPath = root
       for (subfolder in allsubfolders){
         parentPath = paste0(parentPath,"/",subfolder)
-        parentID = self$getWSElementID(parentFolderID = parentID, folderPath = parentPath)
+        parentID = self$getWSItemID(parentFolderID = parentID, folderPath = parentPath)
       }
       return(parentID)
+    },
+    
+    searchWSFolderID = function(folderPath){
+      self$WARN("Method 'searchWSFolderID' is deprecated, use method 'searchWSItemID' instead!")
+      return(self$searchWSItemID(itemPath = folderPath))
     },
     
     #createFolder
@@ -279,7 +318,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
         for(i in 1:nrow(folder_paths)){
           folder_path <- folder_paths[i,]
           self$INFO(sprintf("Search for an existing folder '%s'", file.path(folder_path$folderPath, folder_path$name)))
-          folderID <- self$searchWSFolderID(folderPath = file.path(folder_path$folderPath, folder_path$name))
+          folderID <- self$searchWSItemID(itemPath = file.path(folder_path$folderPath, folder_path$name))
           if(is.null(folderID)){
             self$INFO(sprintf("Folder '%s' does not exist, we create it...", file.path(folder_path$folderPath, folder_path$name)))
             folderID <- self$createFolder(
@@ -294,7 +333,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
         return(folderID)
         
       }else{
-        pathID = self$searchWSFolderID(folderPath = folderPath)
+        pathID = self$searchWSItemID(itemPath = folderPath)
         if(is.null(pathID)){
           errMsg <- sprintf("No folder for path '%s'", folderPath)
           self$ERROR(errMsg)
@@ -337,7 +376,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
       
       name = basename(file)
       folderPath <- private$normalizeFolderPath(folderPath)
-      pathID <- self$searchWSFolderID(folderPath = folderPath)
+      pathID <- self$searchWSItemID(itemPath = folderPath)
       if(is.null(pathID)){
         errMsg <- sprintf("No folder for path '%s'", folderPath)
         self$ERROR(errMsg)
@@ -387,9 +426,42 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(fileID)
     },
     
+    #deleteItem
+    deleteItem = function(itemPath, force = FALSE){
+      deleted <- FALSE
+      pathID <- self$searchWSItemID(itemPath = itemPath)
+      if(!is.null(pathID)){
+        delete_url <- sprintf("%s/items/%s?gcube-token=%s", private$url_storagehub, pathID, self$getToken())
+        if(force){
+          self$INFO(sprintf("Deleting item '%s' (ID = %s) - 'force' is true, deleting permanently!", itemPath, pathID))
+          delete_url <- sprintf("%s/items/%s?force=true&gcube-token=%s", private$url_storagehub, pathID, self$getToken())
+        }else{
+          self$INFO(sprintf("Deleting item '%s' (ID = %s) - moving to trash!", itemPath, pathID))
+        }
+        delete_req <- NULL
+        if(!self$verbose.debug){
+          delete_req <- httr::DELETE(url = delete_url)
+        }else{
+          delete_req <- httr::with_verbose(httr::DELETE(url = delete_url))
+        }
+        if(httr::status_code(delete_req)==200){
+          self$INFO("Successfully deleted item!")
+          deleted <- TRUE
+        }else{
+          errMsg <- sprintf("Error while trying to delete file '%s' (ID = )", itemPath, pathID)
+          self$ERROR(errMsg)
+          stop(errMsg)
+        }
+      }else{
+        self$WARN(sprintf("No item for path '%s'. Nothing deleted!", itemPath))
+        deleted <- FALSE
+      }
+      return(deleted)
+    },
+    
     #getPublicFileLink
     getPublicFileLink = function(path){
-      pathID <- self$searchWSFolderID(path)
+      pathID <- self$searchWSItemID(itemPath = path)
       if(is.null(pathID)){
         errMsg <- sprintf("No file for path '%s'", path)
         self$ERROR(errMsg)
