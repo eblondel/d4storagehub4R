@@ -73,7 +73,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     user_profile = NULL,
     user_workspace = NULL,
     url_icproxy = "https://registry.d4science.org/icproxy/gcube/service/GCoreEndpoint/DataAccess/StorageHub",
-    url_homelibrary = "https://socialnetworking1.d4science.org/social-networking-library-ws/rest/2",
+    url_homelibrary = "https://api.d4science.org/social-networking-library-ws/rest/2",
     url_storagehub = NULL,
     token = NULL,
     #utils
