@@ -1,4 +1,12 @@
 # d4storagehub4R
+
+
+[![Build Status](https://github.com/eblondel/d4storagehub4R/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/d4storagehub4R/actions/workflows/r-cmd-check.yml)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/d4storagehub4R)](https://cran.r-project.org/package=d4storagehub4R)
+[![cran checks](https://cranchecks.info/badges/worst/d4storagehub4R)](https://cran.r-project.org/web/checks/check_results_d4storagehub4R.html)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.2-blue.svg)](https://github.com/eblondel/d4storagehub4R)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5496998.svg)](https://doi.org/10.5281/zenodo.5496998)
+
 R package to ease interaction with D4Science storage hub
 
 The following projects have contributed to the development of ``d4storagehub4R``:
@@ -13,5 +21,5 @@ We thank in advance people that use ``d4storagehub4R`` for citing it in their wo
 
 In case of a missing feature, [create a ticket](https://github.com/eblondel/d4storagehub4R/issues/new).
 
-For more information, or if you are interested in funding this R project or to contribute to it, do not hesitate to contact me by [e-mail](mailto:eblondel.pro@gmail.com)
+For more information, or if you are interested in funding this R project or to contribute to it, do not hesitate to contact me by [e-mail](mailto:emmanuel.blondel1@gmail.com)
 
