@@ -38,7 +38,7 @@ test_that("all Storage hub methods",{
   expect_is(fileId, "character")
   
   #public file link
-  fileLink <- STORAGE$getPublicFileLink("folder1/subfolder2/subfolder3/d4storagehub4R/README.md")
+  fileLink <- STORAGE$getPublicFileLink("folder1/subfolder2/subfolder3/d4storagehub4R/README.txt")
   expect_is(fileLink, "character")
   expect_true(startsWith(fileLink, "https://data.d4science.org/shub"))
   download.file(fileLink, destfile = "README_storagehub.txt", mode = "wb")
