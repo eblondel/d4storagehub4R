@@ -55,10 +55,14 @@
 #'    Searchs a folder ID based on folder path. Deprecated: use \code{searchWSItemID}
 #'  }
 #'  \item{\code{createFolder(folderPath, name, description, hidden, recursive)}}{
-#'    Creates a folder
+#'    Creates a folder, given a folder path, a folder name/description. By default \code{recursive = TRUE} meaning 
+#'    that a folder path matching nested folders will trigger all nested folders. Setting \code{recursive = FALSE}, the
+#'    folder creation will work only if the folder path matches an existing folder. The \code{hidden} (default 
+#'    \code{FALSE}) argument can be used to set hidden folders on the workspace.
 #'  }
 #'  \item{\code{uploadFile(folderPath, file, description, archive)}}{
-#'    Uploads a file
+#'    Uploads a file to a folder (given a folder path). The argument \code{description} can be used to further describe the
+#'    file to upload. The argument \code{archive} (default = FALSE) indicates the type of item (FILE or ARCHIVE) to be uploaded.
 #'  }
 #'  \item{\code{deleteItem(itemPath, force)}}{
 #'    Deletes an item (folder or file) give its path on the workspace. By default \code{force = FALSE} 
