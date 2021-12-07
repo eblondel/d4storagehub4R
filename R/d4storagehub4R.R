@@ -8,6 +8,7 @@
 #' @import httr
 #' @import jsonlite
 #' @import XML
+#' @import xml2
 #' @import keyring
 #' @importFrom tools file_path_as_absolute
 #' 
