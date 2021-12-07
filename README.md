@@ -22,4 +22,3 @@ We thank in advance people that use ``d4storagehub4R`` for citing it in their wo
 In case of a missing feature, [create a ticket](https://github.com/eblondel/d4storagehub4R/issues/new).
 
 For more information, or if you are interested in funding this R project or to contribute to it, do not hesitate to contact me by [e-mail](mailto:emmanuel.blondel1@gmail.com)
-
