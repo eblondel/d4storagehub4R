@@ -33,21 +33,21 @@ test_that("all Storage hub methods",{
   expect_equal(folders[1,]$id, created)
   
   #uploadFile
-  fileId <- STORAGE$uploadFile("folder1/subfolder2/subfolder3/d4storagehub4R", file = "README.md", description = "d4storagehub4R R package README file")
+  writeLines("This is a README file", "README.txt")
+  fileId <- STORAGE$uploadFile("folder1/subfolder2/subfolder3/d4storagehub4R", file = "README.txt", description = "d4storagehub4R R package README file")
   expect_is(fileId, "character")
   
   #public file link
-  itemPath <- "folder1/subfolder2/subfolder3/d4storagehub4R/README.md"
-  fileLink <- STORAGE$getPublicFileLink(itemPath)
+  fileLink <- STORAGE$getPublicFileLink("folder1/subfolder2/subfolder3/d4storagehub4R/README.md")
   expect_is(fileLink, "character")
   expect_true(startsWith(fileLink, "https://data.d4science.org/shub"))
-  download.file(fileLink, destfile = "README_storagehub.md", mode = "wb")
-  source_md5 <- tools::md5sum("README.md"); names(source_md5) = NULL
-  target_md5 <- tools::md5sum("README_storagehub.md"); names(target_md5) = NULL
+  download.file(fileLink, destfile = "README_storagehub.txt", mode = "wb")
+  source_md5 <- tools::md5sum("README.txt"); names(source_md5) = NULL
+  target_md5 <- tools::md5sum("README_storagehub.txt"); names(target_md5) = NULL
   expect_equal(source_md5, target_md5)
   
   #deleteItem
-  deleted <- STORAGE$deleteItem(itemPath = itemPath)
+  deleted <- STORAGE$deleteItem(itemPath = "folder1")
   expect_true(deleted)
   
 })

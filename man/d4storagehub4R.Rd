@@ -10,16 +10,6 @@ Provides an interface to 'D4Science' 'StorageHub' API (<https://dev.d4science.or
 actions over the 'StorageHub' (workspace) including creation of folders, files management (upload/update/deletion/sharing), and listing of 
 stored resources.
 }
-\details{
-\tabular{ll}{
-   Package: \tab d4storagehub4R\cr
-   Type: \tab Package\cr
-   Version: \tab 0.2\cr
-   Date: \tab 2021-12-07\cr
-   License: \tab MIT\cr
-   LazyLoad: \tab yes\cr
- }
-}
 \author{
 Emmanuel Blondel \email{emmanuel.blondel1@gmail.com}
 }

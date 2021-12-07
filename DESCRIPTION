@@ -1,5 +1,5 @@
 Package: d4storagehub4R
-Version: 0.2
+Version: 0.2.9999
 Date: 2021-12-07
 Title: Interface to 'D4Science' 'StorageHub' API
 Authors@R: c(
