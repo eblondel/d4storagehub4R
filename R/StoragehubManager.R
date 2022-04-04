@@ -95,7 +95,8 @@ StoragehubManager <-  R6Class("StoragehubManager",
     url_icproxy = "https://registry.d4science.org/icproxy/gcube/service/GCoreEndpoint/DataAccess/StorageHub",
     url_homelibrary = "https://api.d4science.org/social-networking-library-ws/rest/2",
     url_storagehub = NULL,
-    token = NULL,
+    token_type = NULL,
+    supportedTokenTypes = c("gcube", "jwt"),
     #utils
     #normalizeFolderPath
     normalizeFolderPath = function(path){
@@ -118,7 +119,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     ERROR = function(text){self$logger("ERROR", text)},
     
     #initialize
-    initialize = function(token, logger = NULL, keyring_backend = 'env'){
+    initialize = function(token, token_type = 'gcube', logger = NULL, keyring_backend = 'env'){
       super$initialize(logger = logger)
       if(!is.null(token)) if(nzchar(token)){
         if(!keyring_backend %in% names(keyring:::known_backends)){
@@ -126,6 +127,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
           self$ERROR(errMsg)
           stop(errMsg)
         }
+        private$token_type <- token_type
         private$keyring_backend <- keyring:::known_backends[[keyring_backend]]$new()
         private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
         private$keyring_backend$set_with_value(service = private$keyring_service, username = "d4storagehub4R", password = token)
@@ -160,29 +162,62 @@ StoragehubManager <-  R6Class("StoragehubManager",
     #fetchWSEndpoint
     fetchWSEndpoint = function(){
       self$INFO("Fetching workspace endpoint...")
-      icproxy = paste0(private$url_icproxy, "?gcube-token=", self$getToken())
-      icproxy_req <- httr::GET(icproxy)
+      icproxy_req <- switch(private$token_type,
+        "gcube" = {
+          icproxy = paste0(private$url_icproxy, "?gcube-token=", self$getToken())
+          httr::GET(icproxy)
+        },
+        "jwt" = {
+          httr::GET(private$url_icproxy, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+        }
+      )
       httr::stop_for_status(icproxy_req)
-      xml = XML::xmlParse(httr::content(icproxy_req), "text")
-      private$url_storagehub = XML::xpathSApply(xml, "//Endpoint", xmlValue)[1]
+      if(!is.null(icproxy_req)){
+        xml = XML::xmlParse(httr::content(icproxy_req), "text")
+        private$url_storagehub = XML::xpathSApply(xml, "//Endpoint", xmlValue)[1]
+      }
     },
     
     #fetchUserProfile
     fetchUserProfile = function(){
       self$INFO("Fetching user profile...")
-      user_profile_url = paste0(private$url_homelibrary, "/people/profile?gcube-token=", self$getToken())
-      user_profile_req <- httr::GET(user_profile_url)
+      user_profile_req <- switch(private$token_type,
+        "gcube" = {
+          user_profile_url = paste0(private$url_homelibrary, "/people/profile?gcube-token=", self$getToken())
+          httr::GET(user_profile_url)
+        },
+        "jwt" = {
+          user_profile_url = paste0(private$url_homelibrary, "/people/profile")
+          httr::with_verbose(httr::GET(user_profile_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken()))))
+        }
+      )
+      
       httr::stop_for_status(user_profile_req)
-      user_profile = httr::content(user_profile_req)
-      private$user_profile = user_profile$result
-      private$user_workspace = paste0("/Home/", private$user_profile$username, "/Workspace")
+      if(!is.null(user_profile_req)){
+        user_profile = httr::content(user_profile_req)
+        private$user_profile = user_profile$result
+        private$user_workspace = paste0("/Home/", private$user_profile$username, "/Workspace")
+      }
     },
     
     #getWSRootID
     getWSRootID = function(){
-      rootUrl <- paste0(private$url_storagehub, "?exclude=hl:accounting&gcube-token=", self$getToken())
-      rootDoc <- jsonlite::fromJSON(rootUrl)
-      return(rootDoc$item$id)
+      outroot <- NULL
+      root_req <- switch(private$token_type,
+        "gcube" = {
+          rootUrl <- paste0(private$url_storagehub, "?exclude=hl:accounting&gcube-token=", self$getToken())
+          httr::GET(rootUrl)
+        },
+        "jwt" = {
+          rootUrl <- paste0(private$url_storagehub, "?exclude=hl:accounting")
+          httr::GET(rootUrl, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+        }
+      )
+      if(!is.null(root_req)){
+        rootDoc <- httr::content(root_req)
+        outroot <- rootDoc$item$id
+      }
+      return(outroot)
     },
     
     #getWSItemID
@@ -227,10 +262,23 @@ StoragehubManager <-  R6Class("StoragehubManager",
     
     #listWSItems
     listWSItems = function(parentFolderID = NULL){
+      outlist <- NULL
       if(is.null(parentFolderID)) parentFolderID = self$getWSRootID()
-      listElementsUrl = paste0(private$url_storagehub, "/items/", parentFolderID, "/children?exclude=hl:accounting&gcube-token=", self$getToken())
-      out = jsonlite::fromJSON(listElementsUrl)
-      return(out$itemlist)
+      listElementsUrl = paste0(private$url_storagehub, "/items/", parentFolderID, "/children?exclude=hl:accounting")
+      list_req <- switch(private$token_type,
+        "gcube" = {
+          listElementsUrl <- paste0(listElementsUrl, "&gcube-token=", self$getToken())
+          httr::GET(listElementsUrl)
+        },
+        "jwt" = {
+          httr::GET(listElementsUrl, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+        }
+      )
+      if(!is.null(list_req)){
+        out = jsonlite:::simplify(httr::content(list_req))
+        outlist <- out$itemlist
+      }
+      return(outlist)
     },
     
     #listWSElements
@@ -343,31 +391,61 @@ StoragehubManager <-  R6Class("StoragehubManager",
           self$ERROR(errMsg)
           stop(errMsg)
         }
-        req <- NULL
-        if(!self$verbose.debug){
-          req = httr::POST(
-            paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER?gcube-token=', self$getToken()),
-            body = list(
-              name = name,
-              description = description,
-              hidden = hidden
-            ),
-            encode = "form"
-          )
-        }else{
-          req <- httr::with_verbose(
-            httr::POST(
-              paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER?gcube-token=', self$getToken()),
-              body = list(
-                name = name,
-                description = description,
-                hidden = hidden
-              ),
-              encode = "form"
-            )
-          )
-        }
-        stop_for_status(req)
+        req <- switch(private$token_type,
+          "gcube" = {
+            if(!self$verbose.debug){
+              httr::POST(
+                paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER?gcube-token=', self$getToken()),
+                body = list(
+                  name = name,
+                  description = description,
+                  hidden = hidden
+                ),
+                encode = "form"
+              )
+            }else{
+              httr::with_verbose(
+                httr::POST(
+                  paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER?gcube-token=', self$getToken()),
+                  body = list(
+                    name = name,
+                    description = description,
+                    hidden = hidden
+                  ),
+                  encode = "form"
+                )
+              )
+            }
+          },
+          "jwt" = {
+            if(!self$verbose.debug){
+              httr::POST(
+                paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER'),
+                body = list(
+                  name = name,
+                  description = description,
+                  hidden = hidden
+                ),
+                encode = "form",
+                httr::add_headers("Authorization" = paste("Bearer", self$getToken()))
+              )
+            }else{
+              httr::with_verbose(
+                httr::POST(
+                  paste0(private$url_storagehub, "/items/",pathID,'/create/FOLDER'),
+                  body = list(
+                    name = name,
+                    description = description,
+                    hidden = hidden
+                  ),
+                  encode = "form",
+                  httr::add_headers("Authorization" = paste("Bearer", self$getToken()))
+                )
+              )
+            }
+          }
+        )
+        httr::stop_for_status(req)
         folderID <- content(req, "text")
         return(folderID)
       }
@@ -393,30 +471,60 @@ StoragehubManager <-  R6Class("StoragehubManager",
       
       type <- ifelse(archive, "ARCHIVE", "FILE")
       
-      upload_url <- sprintf("%s/items/%s/create/%s?gcube-token=%s", private$url_storagehub, pathID, type, self$getToken())
+      upload_url <- sprintf("%s/items/%s/create/%s", private$url_storagehub, pathID, type)
       
-      upload_req <- NULL
-      if(!self$verbose.debug){
-        upload_req <- httr::POST(
-          url = upload_url,
-          body = list(
-            name = name,
-            description = description,
-            file = httr::upload_file(file)
-          )
-        )
-      }else{
-        upload_req <- httr::with_verbose(
-          httr::POST(
-            url = upload_url,
-            body = list(
-              name = name,
-              description = description,
-              file = httr::upload_file(file)
+      upload_req <- switch(private$token_type,
+        "gcube" = {
+          upload_url <- paste0(upload_url, "?gcube-token=", self$getToken())
+          if(!self$verbose.debug){
+            httr::POST(
+              url = upload_url,
+              body = list(
+                name = name,
+                description = description,
+                file = httr::upload_file(file)
+              )
             )
-          )
-        )
-      }
+          }else{
+            httr::with_verbose(
+              httr::POST(
+                url = upload_url,
+                body = list(
+                  name = name,
+                  description = description,
+                  file = httr::upload_file(file)
+                )
+              )
+            )
+          }
+        },
+        "jwt" = {
+          if(!self$verbose.debug){
+            httr::POST(
+              url = upload_url,
+              body = list(
+                name = name,
+                description = description,
+                file = httr::upload_file(file)
+              ),
+              httr::add_headers("Authorization" = paste("Bearer", self$getToken()))
+            )
+          }else{
+            httr::with_verbose(
+              httr::POST(
+                url = upload_url,
+                body = list(
+                  name = name,
+                  description = description,
+                  file = httr::upload_file(file)
+                ),
+                httr::add_headers("Authorization" = paste("Bearer", self$getToken()))
+              )
+            )
+          }
+        }
+      )
+      
       fileID <- NULL
       if(httr::status_code(upload_req)==200){
         fileID <- httr::content(upload_req, "text")
@@ -435,19 +543,30 @@ StoragehubManager <-  R6Class("StoragehubManager",
       deleted <- FALSE
       pathID <- self$searchWSItemID(itemPath = itemPath)
       if(!is.null(pathID)){
-        delete_url <- sprintf("%s/items/%s?gcube-token=%s", private$url_storagehub, pathID, self$getToken())
+        delete_url <- sprintf("%s/items/%s", private$url_storagehub, pathID)
         if(force){
           self$INFO(sprintf("Deleting item '%s' (ID = %s) - 'force' is true, deleting permanently!", itemPath, pathID))
-          delete_url <- sprintf("%s/items/%s?force=true&gcube-token=%s", private$url_storagehub, pathID, self$getToken())
+          delete_url <- sprintf("%s/items/%s?force=true", private$url_storagehub, pathID)
         }else{
           self$INFO(sprintf("Deleting item '%s' (ID = %s) - moving to trash!", itemPath, pathID))
         }
-        delete_req <- NULL
-        if(!self$verbose.debug){
-          delete_req <- httr::DELETE(url = delete_url)
-        }else{
-          delete_req <- httr::with_verbose(httr::DELETE(url = delete_url))
-        }
+        delete_req <- switch(private$token_type,
+          "gcube" = {
+            delete_url <- paste0(delete_url, ifelse(force, "&", "?"), "gcube-token=", self$getToken())
+            if(!self$verbose.debug){
+              httr::DELETE(url = delete_url)
+            }else{
+              httr::with_verbose(httr::DELETE(url = delete_url))
+            }
+          },
+          "jwt" = {
+            if(!self$verbose.debug){
+              httr::DELETE(url = delete_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+            }else{
+              httr::with_verbose(httr::DELETE(url = delete_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken()))))
+            }
+          }
+        )
         if(httr::status_code(delete_req)==200){
           self$INFO("Successfully deleted item!")
           deleted <- TRUE
@@ -465,14 +584,24 @@ StoragehubManager <-  R6Class("StoragehubManager",
     
     #getPublicFileLink
     getPublicFileLink = function(path){
+      link <- NULL
       pathID <- self$searchWSItemID(itemPath = path)
       if(is.null(pathID)){
         errMsg <- sprintf("No file for path '%s'", path)
         self$ERROR(errMsg)
         stop(errMsg)
       }
-      link_url <- sprintf("%s/items/%s/publiclink?exclude=hl:accounting&gcube-token=%s", private$url_storagehub, pathID, self$getToken())
-      link <- jsonlite::fromJSON(link_url)
+      link_url <- sprintf("%s/items/%s/publiclink?exclude=hl:accounting", private$url_storagehub, pathID)
+      pl_req <- switch(private$token_type,
+        "gcube" = {
+          link_url <-paste0(link_url, "&gcube-token=", self$getToken())
+          httr::GET(link_url)
+        },
+        "jwt" = {
+          httr::GET(link_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+        }
+      )
+      if(!is.null(pl_req)) link <- httr::content(pl_req)
       return(link)
     }
     
