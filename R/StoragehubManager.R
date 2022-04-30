@@ -65,8 +65,12 @@
 #'    file to upload. The argument \code{archive} (default = FALSE) indicates the type of item (FILE or ARCHIVE) to be uploaded.
 #'  }
 #'  \item{\code{deleteItem(itemPath, force)}}{
-#'    Deletes an item (folder or file) give its path on the workspace. By default \code{force = FALSE} 
+#'    Deletes an item (folder or file) given its path on the workspace. By default \code{force = FALSE} 
 #'    meaning the item is moved to trash. To delete permanently the item, set \code{force = TRUE}.
+#'  }
+#'  \item{\code{shareItem(itemPath, defaultAccessType, users)}}{
+#'    Shares an item (folder or file) given its path on the workspace. A \code{defaultAccessType} should be provided,
+#'    as well as the list of \code{users} for which item should be shared.
 #'  }
 #'  \item{\code{getPublicFileLink(path)}}{
 #'    Get a public link for a workspace resource
@@ -580,6 +584,54 @@ StoragehubManager <-  R6Class("StoragehubManager",
         deleted <- FALSE
       }
       return(deleted)
+    },
+    
+    #shareItem
+    shareItem = function(itemPath, defaultAccessType, users){
+      
+      supportedDefaultAccessTypes <- c("WRITE_ALL", "WRITE_OWNER", "READ_ONLY", "ADMINISTATOR")
+      if(!defaultAccessType %in% supportedDefaultAccessTypes){
+        errMsg <- sprintf("Unsupported default access type '%s'. Supported values are [%s]", 
+                          defaultAccessType, paste0(supportedDefaultAccessTypes, collapse=","))
+        self$ERROR(errMsg)
+        stop(errMsg)
+      }
+      
+      body <- list(defaultAccessType = defaultAccessType)
+      the_users <- sapply(users, function(x){list(users = x)})
+      names(the_users) <- rep("users", length(the_users))
+      body <- c(body, the_users)
+      
+      shared <- FALSE
+      pathID <- self$searchWSItemID(itemPath = itemPath)
+      if(!is.null(pathID)){
+        share_url <- sprintf("%s/items/%s/share", private$url_storagehub, pathID)
+        shared_req <- switch(private$token_type,
+         "gcube" = {
+           share_url <-paste0(share_url, "?gcube-token=", self$getToken())
+           httr::PUT(
+             share_url, 
+             encode = "multipart", 
+             body = body
+           )
+         },
+         "jwt" = {
+           httr::PUT(
+             share_url, 
+             httr::add_headers("Authorization" = paste("Bearer", self$getToken())),
+             encode = "multipart",
+             body = body
+           )
+         }
+        )
+        if(!is.null(shared_req)) if(httr::status_code(shared_req)==200){
+          shared <- TRUE
+        }
+      }else{
+        self$WARN(sprintf("No item for path '%s'. Nothing to share!", itemPath))
+        shared <- FALSE
+      }
+      return(shared)
     },
     
     #getPublicFileLink
