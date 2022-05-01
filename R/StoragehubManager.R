@@ -3,79 +3,6 @@
 #' @export
 #' @keywords storagehub manager
 #' @return Object of \code{\link{R6Class}} for modelling a D4Science StoragehubManager
-#' @format \code{\link{R6Class}} object.
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(token, logger, keyring_backend)}}{
-#'    This method is used to instantiate the \code{StoragehubManager}. By default,
-#'    the url is inherited through D4Science Icproxy service.
-#'    
-#'    The token is mandatory in order to use Storage Hub API.
-#'    
-#'    The \code{keyring_backend} can be set to use a different backend for storing 
-#'    the D4science gcube token with \pkg{keyring} (Default value is 'env').
-#'    
-#'    The logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" 
-#'    (for complete curl http calls logs)
-#'  }
-#'  \item{\code{getToken()}}{
-#'    Get user token.
-#'  }
-#'  \item{\code{getUserProfile()}}{
-#'    Get user profile.
-#'  }
-#'  \item{\code{getUserWorkspace()}}{
-#'    Get user workspace root path.
-#'  }
-#'  \item{\code{getWSRootID()}}{
-#'    Get workspace root ID
-#'  }
-#'  \item{\code{getWSItemID(parentFolderID, folderPath)}}{
-#'    Get workspace item ID
-#'  }
-#'  \item{\code{getWSElementID(parentFolderID, folderPath)}}{
-#'    Get workspace element ID. Deprecated: use \code{getWSItemID}
-#'  }
-#'  \item{\code{listWSItems(parentFolderID)}}{
-#'    Lists workspace items given a parentFolder ID
-#'  }
-#'  \item{\code{listWSElements(parentFolderID)}}{
-#'    Lists workspace elements given a parentFolder ID. Deprecated: use \code{listWSItems}
-#'  }
-#'  \item{\code{listWSItemsByPath(folderPath)}}{
-#'    Lists workspace items given a folder path
-#'  }
-#'  \item{\code{listWSElementsByPath(folderPath)}}{
-#'    Lists workspace elements given a folder path. Deprecated: use \code{listWSItemsByPath}
-#'  }
-#'  \item{\code{searchWSItemID(itemPath)}}{
-#'    Searchs an element ID based on an element path
-#'  }
-#'  \item{\code{searchWSFolderID(folderPath)}}{
-#'    Searchs a folder ID based on folder path. Deprecated: use \code{searchWSItemID}
-#'  }
-#'  \item{\code{createFolder(folderPath, name, description, hidden, recursive)}}{
-#'    Creates a folder, given a folder path, a folder name/description. By default \code{recursive = TRUE} meaning 
-#'    that a folder path matching nested folders will trigger all nested folders. Setting \code{recursive = FALSE}, the
-#'    folder creation will work only if the folder path matches an existing folder. The \code{hidden} (default 
-#'    \code{FALSE}) argument can be used to set hidden folders on the workspace.
-#'  }
-#'  \item{\code{uploadFile(folderPath, file, description, archive)}}{
-#'    Uploads a file to a folder (given a folder path). The argument \code{description} can be used to further describe the
-#'    file to upload. The argument \code{archive} (default = FALSE) indicates the type of item (FILE or ARCHIVE) to be uploaded.
-#'  }
-#'  \item{\code{deleteItem(itemPath, force)}}{
-#'    Deletes an item (folder or file) given its path on the workspace. By default \code{force = FALSE} 
-#'    meaning the item is moved to trash. To delete permanently the item, set \code{force = TRUE}.
-#'  }
-#'  \item{\code{shareItem(itemPath, defaultAccessType, users)}}{
-#'    Shares an item (folder or file) given its path on the workspace. A \code{defaultAccessType} should be provided,
-#'    as well as the list of \code{users} for which item should be shared.
-#'  }
-#'  \item{\code{getPublicFileLink(path)}}{
-#'    Get a public link for a workspace resource
-#'  }
-#' }
 #' 
 #' @examples
 #' \dontrun{
@@ -109,20 +36,15 @@ StoragehubManager <-  R6Class("StoragehubManager",
     }
   ),
   public = list(
-    #logger
-    verbose.info = FALSE,
-    verbose.debug = FALSE,
-    loggerType = NULL,
-    logger = function(type, text){
-      if(self$verbose.info){
-        cat(sprintf("[d4storagehub4R][%s] %s - %s \n", type, self$getClassName(), text))
-      }
-    },
-    INFO = function(text){self$logger("INFO", text)},
-    WARN = function(text){self$logger("WARN", text)},
-    ERROR = function(text){self$logger("ERROR", text)},
     
-    #initialize
+    #'@description Method is used to instantiate the \link{StoragehubManager}. By default,
+    #' the url is inherited through D4Science Icproxy service.
+    #'@param token user access token
+    #'@param token_type token type, either 'gcube' (default) or 'jwt'
+    #'@param logger logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" (for complete 
+    #' curl http calls logs)
+    #'@param keyring_backend keyring backend to use.it can be set to use a different backend for storing 
+    #' the D4science gcube token with \pkg{keyring} (Default value is 'env').
     initialize = function(token, token_type = 'gcube', logger = NULL, keyring_backend = 'env'){
       super$initialize(logger = logger)
       if(!is.null(token)) if(nzchar(token)){
@@ -142,7 +64,8 @@ StoragehubManager <-  R6Class("StoragehubManager",
       }
     },
     
-    #getToken
+    #'@description Get token
+    #'@return the user access token
     getToken = function(){
       token <- NULL
       if(!is.null(private$keyring_service)){
@@ -153,17 +76,19 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(token)
     },
     
-    #getUserProfile
+    #'@description Get user profile
+    #'@return the user profile
     getUserProfile = function(){
       return(private$user_profile)
     },
     
-    #getUserWorkspace
+    #'@description Get user workspace
+    #'@return the user workspace root path
     getUserWorkspace = function(){
       return(private$user_workspace)
     },
     
-    #fetchWSEndpoint
+    #'@description Fetches the workspace endpoint from the D4Science ICProxy service
     fetchWSEndpoint = function(){
       self$INFO("Fetching workspace endpoint...")
       icproxy_req <- switch(private$token_type,
@@ -182,7 +107,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
       }
     },
     
-    #fetchUserProfile
+    #'@description Fetches the user profile
     fetchUserProfile = function(){
       self$INFO("Fetching user profile...")
       user_profile_req <- switch(private$token_type,
@@ -204,7 +129,8 @@ StoragehubManager <-  R6Class("StoragehubManager",
       }
     },
     
-    #getWSRootID
+    #'@description Get workspace root ID
+    #'@return the workspace root ID, as \code{character}
     getWSRootID = function(){
       outroot <- NULL
       root_req <- switch(private$token_type,
@@ -224,7 +150,10 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(outroot)
     },
     
-    #getWSItemID
+    #'@description Get workspace item ID given a \code{folderPath} in a parent folder
+    #'@param parentFolderID parent folder ID
+    #'@param folderPath folder path
+    #'@return the workspace item ID, \code{NULL} if no workspace item existing
     getWSItemID = function(parentFolderID = NULL, folderPath){
       elements <- self$listWSItems(parentFolderID = parentFolderID)
       
@@ -258,13 +187,19 @@ StoragehubManager <-  R6Class("StoragehubManager",
       
     },
     
-    #getWSElementID
+    #'@description Get workspace element ID given a \code{folderPath} in a parent folder
+    #'@param parentFolderID parent folder ID
+    #'@param folderPath folder path
+    #'@return the workspace element ID, \code{NULL} if no workspace item existing
+    #'@note Deprecated, use \code{getWSItemID}
     getWSElementID = function(parentFolderID = NULL, folderPath){
       self$WARN("Method 'getWSElementID' is deprecated, use method 'getWSItemID' instead!")
       self$getWSItemID(parentFolderID = parentFolderID, folderPath = folderPath)
     },
     
-    #listWSItems
+    #'@description Lists workspace items given a parentFolder ID
+    #'@param parentFolderID parent folder ID
+    #'@return an object of class \code{data.frame}
     listWSItems = function(parentFolderID = NULL){
       outlist <- NULL
       if(is.null(parentFolderID)) parentFolderID = self$getWSRootID()
@@ -285,26 +220,36 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(outlist)
     },
     
-    #listWSElements
+    #'@description Lists workspace elements given a parentFolder ID
+    #'@param parentFolderID parent folder ID
+    #'@return an object of class \code{data.frame}
+    #'@note Deprecated, use \code{listWSItems}
     listWSElements = function(parentFolderID = NULL){
       self$WARN("Method 'listWSElements' is deprecated, use method 'listWSItems' instead!")
       self$listWSItems(parentFolderID = parentFolderID)
     },
     
-    #listWSItemsByPath
+    #'@description Lists workspace items given a folder path
+    #'@param folderPath folder path where to list items
+    #'@return an object of class \code{data.frame}
     listWSItemsByPath = function(folderPath){
       folderID <- self$searchWSItemID(itemPath = folderPath)
       if(is.null(folderID)) return(NULL)
       self$listWSItems(parentFolderID = folderID)
     },
     
-    #listWSElementsByPath
+    #'@description Lists workspace elements given a folder path
+    #'@param folderPath folder path where to list elements
+    #'@return an object of class \code{data.frame}
+    #'@note Deprecated, use \code{listWSItemsByPath}
     listWSElementsByPath = function(folderPath){
       self$WARN("Method 'listWSElementsByPath' is deprecated, use method 'listWSItemsByPath' instead!")
       self$listWSItemsByPath(folderPath = folderPath)
     },
     
-    #searchWSItemID
+    #'@description Searches for a workspace item ID given a item path
+    #'@param itemPath path of the item
+    #'@return the item ID, \code{NULL} if nothing found
     searchWSItemID = function(itemPath){
       rootID = self$getWSRootID()
       root <- self$getUserWorkspace()
@@ -328,12 +273,25 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(parentID)
     },
     
+    #'@description Searches for a workspace element ID given a item path
+    #'@param folderPath path of the element
+    #'@return the item ID, \code{NULL} if nothing found
+    #'@note Deprecated, use \code{searchWSItemID}
     searchWSFolderID = function(folderPath){
       self$WARN("Method 'searchWSFolderID' is deprecated, use method 'searchWSItemID' instead!")
       return(self$searchWSItemID(itemPath = folderPath))
     },
     
-    #createFolder
+    #'@description Creates a folder, given a folder path, a folder name/description. By default \code{recursive = TRUE} meaning 
+    #'    that a folder path matching nested folders will trigger all nested folders. Setting \code{recursive = FALSE}, the
+    #'    folder creation will work only if the folder path matches an existing folder. The \code{hidden} (default 
+    #'    \code{FALSE}) argument can be used to set hidden folders on the workspace.
+    #'@param folderPath parent folder path where to create the folder
+    #'@param name name of the folder
+    #'@param description description of the folder
+    #'@param hidden hidden, default is \code{FALSE}
+    #'@param recursive recursive, default is \code{TRUE}
+    #'@return the ID of the created folder
     createFolder = function(folderPath = NULL, name, description = "", 
                             hidden = FALSE, recursive = TRUE){
       self$INFO(sprintf("Creating folder '%s at '%s'...", name, folderPath))
@@ -455,7 +413,13 @@ StoragehubManager <-  R6Class("StoragehubManager",
       }
     },
     
-    #uploadFile
+    #'@description  Uploads a file to a folder (given a folder path). The argument \code{description} can be used to further describe the
+    #'    file to upload. The argument \code{archive} (default = FALSE) indicates the type of item (FILE or ARCHIVE) to be uploaded.
+    #'@param folderPath folder path where to upload the file
+    #'@param file file to upload
+    #'@param description file description, default would be the file basename
+    #'@param archive archive, default is \code{FALSE} 
+    #'@return the ID of the uploaded file   
     uploadFile = function(folderPath = NULL, file, description = basename(file), archive = FALSE){
       self$INFO(sprintf("Uploading file '%s' at '%s'...", file, folderPath))
       if(is.null(folderPath)) folderPath = self$getUserWorkspace()
@@ -542,7 +506,10 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(fileID)
     },
     
-    #deleteItem
+    #'@description Deletes an item given its path on the workspace
+    #'@param itemPath item path
+    #'@param force whether to force deletion, default is \code{FALSE}
+    #'@return \code{TRUE} if deleted, \code{FALSE} otherwise
     deleteItem = function(itemPath, force = FALSE){
       deleted <- FALSE
       pathID <- self$searchWSItemID(itemPath = itemPath)
@@ -586,7 +553,11 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(deleted)
     },
     
-    #shareItem
+    #'@description Shares an item with users
+    #'@param itemPath item path
+    #'@param defaultAccessType access type to use for sharing, among 'WRITE_ALL', 'WRITE_OWNER', 'READ_ONLY', 'ADMINISTRATOR'
+    #'@param users one or more user names with whom the item has to be shared
+    #'@return \code{TRUE} if shared, \code{FALSE} otherwise
     shareItem = function(itemPath, defaultAccessType, users){
       
       supportedDefaultAccessTypes <- c("WRITE_ALL", "WRITE_OWNER", "READ_ONLY", "ADMINISTATOR")
@@ -634,7 +605,9 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(shared)
     },
     
-    #getPublicFileLink
+    #'@description Get public file link
+    #'@param path file path
+    #'@return the public file URL
     getPublicFileLink = function(path){
       link <- NULL
       pathID <- self$searchWSItemID(itemPath = path)

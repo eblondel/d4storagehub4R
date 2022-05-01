@@ -12,6 +12,8 @@ Object of \code{\link{R6Class}} for modelling a simple logger
 }
 \description{
 d4storagehub4RLogger
+
+d4storagehub4RLogger
 }
 \note{
 Logger class used internally by d4storagehub4R
@@ -32,3 +34,158 @@ Logger class used internally by d4storagehub4R
 }
 
 \keyword{logger}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{verbose.info}}{verbose info, default is \code{FALSE}}
+
+\item{\code{verbose.debug}}{verbose debug, default is \code{FALSE}}
+
+\item{\code{loggerType}}{logger type}
+}
+\if{html}{\out{</div>}}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-logger}{\code{d4storagehub4RLogger$logger()}}
+\item \href{#method-INFO}{\code{d4storagehub4RLogger$INFO()}}
+\item \href{#method-WARN}{\code{d4storagehub4RLogger$WARN()}}
+\item \href{#method-ERROR}{\code{d4storagehub4RLogger$ERROR()}}
+\item \href{#method-new}{\code{d4storagehub4RLogger$new()}}
+\item \href{#method-getClassName}{\code{d4storagehub4RLogger$getClassName()}}
+\item \href{#method-getClass}{\code{d4storagehub4RLogger$getClass()}}
+\item \href{#method-clone}{\code{d4storagehub4RLogger$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-logger"></a>}}
+\if{latex}{\out{\hypertarget{method-logger}{}}}
+\subsection{Method \code{logger()}}{
+Logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$logger(type, text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{type}}{type}
+
+\item{\code{text}}{text}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-INFO"></a>}}
+\if{latex}{\out{\hypertarget{method-INFO}{}}}
+\subsection{Method \code{INFO()}}{
+INFO logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$INFO(text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{text}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WARN"></a>}}
+\if{latex}{\out{\hypertarget{method-WARN}{}}}
+\subsection{Method \code{WARN()}}{
+WARN logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$WARN(text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{text}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ERROR"></a>}}
+\if{latex}{\out{\hypertarget{method-ERROR}{}}}
+\subsection{Method \code{ERROR()}}{
+ERROR logger function
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$ERROR(text)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{text}}{text}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+Initializes a basic logger class
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$new(logger = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{logger}}{the type of logger, either \code{NULL} (default), \code{INFO}, or \code{DEBUG}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getClassName"></a>}}
+\if{latex}{\out{\hypertarget{method-getClassName}{}}}
+\subsection{Method \code{getClassName()}}{
+Get class name
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$getClassName()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the class name
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getClass"></a>}}
+\if{latex}{\out{\hypertarget{method-getClass}{}}}
+\subsection{Method \code{getClass()}}{
+Get class
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$getClass()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the class
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{d4storagehub4RLogger$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
