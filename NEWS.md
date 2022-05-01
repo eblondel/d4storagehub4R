@@ -3,7 +3,8 @@
 
 **New features**
 
-*[#4](https://github.com/eblondel/d4storagehub4R/issues/4) Support JWT token authorization
+* [#4](https://github.com/eblondel/d4storagehub4R/issues/4) Support JWT token authorization
+* [#5](https://github.com/eblondel/d4storagehub4R/issues/5) Support `shareItem` method
 
 ## [d4storagehub4R 0.2](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
