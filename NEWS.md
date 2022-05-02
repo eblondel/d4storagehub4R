@@ -1,5 +1,5 @@
 
-## [d4storagehub4R 0.3](https://github.com/eblondel/d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://github.com/eblondel/d4storagehub4R)
+## [d4storagehub4R 0.3](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
 **New features**
 
