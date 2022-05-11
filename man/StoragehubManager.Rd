@@ -15,6 +15,8 @@ StoragehubManager
 \note{
 Main user class to be used with \pkg{d4storagehub4R}
 
+Deprecated
+
 Deprecated, use \code{getWSItemID}
 
 Deprecated, use \code{listWSItems}
@@ -82,8 +84,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-Method is used to instantiate the \link{StoragehubManager}. By default,
-the url is inherited through D4Science Icproxy service.
+Method is used to instantiate the \link{StoragehubManager}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$new(
   token,

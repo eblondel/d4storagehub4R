@@ -25,7 +25,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     user_workspace = NULL,
     url_icproxy = "https://registry.d4science.org/icproxy/gcube/service/GCoreEndpoint/DataAccess/StorageHub",
     url_homelibrary = "https://api.d4science.org/social-networking-library-ws/rest/2",
-    url_storagehub = NULL,
+    url_storagehub = "https://api.d4science.org/workspace",
     token_type = NULL,
     supportedTokenTypes = c("gcube", "jwt"),
     #utils
@@ -37,8 +37,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
   ),
   public = list(
     
-    #'@description Method is used to instantiate the \link{StoragehubManager}. By default,
-    #' the url is inherited through D4Science Icproxy service.
+    #'@description Method is used to instantiate the \link{StoragehubManager}.
     #'@param token user access token
     #'@param token_type token type, either 'gcube' (default) or 'jwt'
     #'@param logger logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" (for complete 
@@ -55,9 +54,8 @@ StoragehubManager <-  R6Class("StoragehubManager",
         }
         private$token_type <- token_type
         private$keyring_backend <- keyring:::known_backends[[keyring_backend]]$new()
-        private$keyring_service = paste0("d4storagehub4R@", private$url_icproxy)
+        private$keyring_service = paste0("d4storagehub4R@", private$url_storagehub)
         private$keyring_backend$set_with_value(service = private$keyring_service, username = "d4storagehub4R", password = token)
-        self$fetchWSEndpoint()
         self$fetchUserProfile()
       }else{
         self$INFO("Successfully connected to Storage hub as anonymous user")
@@ -89,6 +87,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
     },
     
     #'@description Fetches the workspace endpoint from the D4Science ICProxy service
+    #'@note Deprecated
     fetchWSEndpoint = function(){
       self$INFO("Fetching workspace endpoint...")
       icproxy_req <- switch(private$token_type,
