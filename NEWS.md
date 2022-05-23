@@ -5,13 +5,16 @@
 * [#7](https://github.com/eblondel/d4storagehub4R/issues/7) Provide persistent base URL for workspace API endpoint
 * [#8](https://github.com/eblondel/d4storagehub4R/issues/8) Switch to new Social-networking API endpoint URL
 
+**New features**
+
+* [#9](https://github.com/eblondel/d4storagehub4R/issues/9) Support `unshareItem` method
+
 ## [d4storagehub4R 0.3](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
 **New features**
 
 * [#4](https://github.com/eblondel/d4storagehub4R/issues/4) Support JWT token authorization
 * [#5](https://github.com/eblondel/d4storagehub4R/issues/5) Support `shareItem` method
-* [#9](https://github.com/eblondel/d4storagehub4R/issues/9) Support `unshareItem` method
 
 **Enhancements**
 
