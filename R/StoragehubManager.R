@@ -609,6 +609,11 @@ StoragehubManager <-  R6Class("StoragehubManager",
     #'@param users users
     #'@return \code{TRUE} if unshared, \code{FALSE} otherwise
     unshareItem = function(itemPath, users){
+      
+      the_users <- sapply(users, function(x){list(users = x)})
+      names(the_users) <- rep("users", length(the_users))
+      body <- c(the_users)
+      
       pathID <- self$searchWSItemID(itemPath = itemPath)
       if(!is.null(pathID)){
         share_url <- sprintf("%s/items/%s/unshare", private$url_storagehub, pathID)
