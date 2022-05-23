@@ -18,7 +18,7 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">d4storagehub4R</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4</span>
       </span>
     </div>
 
@@ -82,34 +82,35 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
 <div class="section">
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
-<ul><li><p><a href="#method-new"><code>StoragehubManager$new()</code></a></p></li>
-<li><p><a href="#method-getToken"><code>StoragehubManager$getToken()</code></a></p></li>
-<li><p><a href="#method-getUserProfile"><code>StoragehubManager$getUserProfile()</code></a></p></li>
-<li><p><a href="#method-getUserWorkspace"><code>StoragehubManager$getUserWorkspace()</code></a></p></li>
-<li><p><a href="#method-fetchWSEndpoint"><code>StoragehubManager$fetchWSEndpoint()</code></a></p></li>
-<li><p><a href="#method-fetchUserProfile"><code>StoragehubManager$fetchUserProfile()</code></a></p></li>
-<li><p><a href="#method-getWSRootID"><code>StoragehubManager$getWSRootID()</code></a></p></li>
-<li><p><a href="#method-getWSItemID"><code>StoragehubManager$getWSItemID()</code></a></p></li>
-<li><p><a href="#method-getWSElementID"><code>StoragehubManager$getWSElementID()</code></a></p></li>
-<li><p><a href="#method-listWSItems"><code>StoragehubManager$listWSItems()</code></a></p></li>
-<li><p><a href="#method-listWSElements"><code>StoragehubManager$listWSElements()</code></a></p></li>
-<li><p><a href="#method-listWSItemsByPath"><code>StoragehubManager$listWSItemsByPath()</code></a></p></li>
-<li><p><a href="#method-listWSElementsByPath"><code>StoragehubManager$listWSElementsByPath()</code></a></p></li>
-<li><p><a href="#method-searchWSItemID"><code>StoragehubManager$searchWSItemID()</code></a></p></li>
-<li><p><a href="#method-searchWSFolderID"><code>StoragehubManager$searchWSFolderID()</code></a></p></li>
-<li><p><a href="#method-createFolder"><code>StoragehubManager$createFolder()</code></a></p></li>
-<li><p><a href="#method-uploadFile"><code>StoragehubManager$uploadFile()</code></a></p></li>
-<li><p><a href="#method-deleteItem"><code>StoragehubManager$deleteItem()</code></a></p></li>
-<li><p><a href="#method-shareItem"><code>StoragehubManager$shareItem()</code></a></p></li>
-<li><p><a href="#method-getPublicFileLink"><code>StoragehubManager$getPublicFileLink()</code></a></p></li>
-<li><p><a href="#method-clone"><code>StoragehubManager$clone()</code></a></p></li>
-</ul></div><p><details><summary>Inherited methods</summary><ul><li><p><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="ERROR"><a href="d4storagehub4RLogger.html#method-ERROR"><code>d4storagehub4R::d4storagehub4RLogger$ERROR()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClass"><a href="d4storagehub4RLogger.html#method-getClass"><code>d4storagehub4R::d4storagehub4RLogger$getClass()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClassName"><a href="d4storagehub4RLogger.html#method-getClassName"><code>d4storagehub4R::d4storagehub4RLogger$getClassName()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="INFO"><a href="d4storagehub4RLogger.html#method-INFO"><code>d4storagehub4R::d4storagehub4RLogger$INFO()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="logger"><a href="d4storagehub4RLogger.html#method-logger"><code>d4storagehub4R::d4storagehub4RLogger$logger()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="WARN"><a href="d4storagehub4RLogger.html#method-WARN"><code>d4storagehub4R::d4storagehub4RLogger$WARN()</code></a></span></p></li>
-</ul></details></p><hr><a id="method-new"></a><div class="section">
+<ul><li><p><a href="#method-StoragehubManager-new"><code>StoragehubManager$new()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getToken"><code>StoragehubManager$getToken()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getUserProfile"><code>StoragehubManager$getUserProfile()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getUserWorkspace"><code>StoragehubManager$getUserWorkspace()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-fetchWSEndpoint"><code>StoragehubManager$fetchWSEndpoint()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-fetchUserProfile"><code>StoragehubManager$fetchUserProfile()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getWSRootID"><code>StoragehubManager$getWSRootID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getWSItemID"><code>StoragehubManager$getWSItemID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getWSElementID"><code>StoragehubManager$getWSElementID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-listWSItems"><code>StoragehubManager$listWSItems()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-listWSElements"><code>StoragehubManager$listWSElements()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-listWSItemsByPath"><code>StoragehubManager$listWSItemsByPath()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-listWSElementsByPath"><code>StoragehubManager$listWSElementsByPath()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-searchWSItemID"><code>StoragehubManager$searchWSItemID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-searchWSFolderID"><code>StoragehubManager$searchWSFolderID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-createFolder"><code>StoragehubManager$createFolder()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-uploadFile"><code>StoragehubManager$uploadFile()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-deleteItem"><code>StoragehubManager$deleteItem()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-shareItem"><code>StoragehubManager$shareItem()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-unshareItem"><code>StoragehubManager$unshareItem()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getPublicFileLink"><code>StoragehubManager$getPublicFileLink()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-clone"><code>StoragehubManager$clone()</code></a></p></li>
+</ul></div><p><details><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="ERROR"><a href="d4storagehub4RLogger.html#method-ERROR"><code>d4storagehub4R::d4storagehub4RLogger$ERROR()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="INFO"><a href="d4storagehub4RLogger.html#method-INFO"><code>d4storagehub4R::d4storagehub4RLogger$INFO()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="WARN"><a href="d4storagehub4RLogger.html#method-WARN"><code>d4storagehub4R::d4storagehub4RLogger$WARN()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClass"><a href="d4storagehub4RLogger.html#method-getClass"><code>d4storagehub4R::d4storagehub4RLogger$getClass()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClassName"><a href="d4storagehub4RLogger.html#method-getClassName"><code>d4storagehub4R::d4storagehub4RLogger$getClassName()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="logger"><a href="d4storagehub4RLogger.html#method-logger"><code>d4storagehub4R::d4storagehub4RLogger$logger()</code></a></span></li>
+</ul></details></p><hr><a id="method-StoragehubManager-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Method is used to instantiate the StoragehubManager.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
@@ -144,7 +145,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-getToken"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-getToken"></a><div class="section">
 <h3 id="method-gettoken-">Method <code>getToken()</code><a class="anchor" aria-label="anchor" href="#method-gettoken-"></a></h3>
 <p>Get token</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
@@ -156,7 +157,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the user access token</p>
 </div>
 
-</div><p></p><hr><a id="method-getUserProfile"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-getUserProfile"></a><div class="section">
 <h3 id="method-getuserprofile-">Method <code>getUserProfile()</code><a class="anchor" aria-label="anchor" href="#method-getuserprofile-"></a></h3>
 <p>Get user profile</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
@@ -168,7 +169,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the user profile</p>
 </div>
 
-</div><p></p><hr><a id="method-getUserWorkspace"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-getUserWorkspace"></a><div class="section">
 <h3 id="method-getuserworkspace-">Method <code>getUserWorkspace()</code><a class="anchor" aria-label="anchor" href="#method-getuserworkspace-"></a></h3>
 <p>Get user workspace</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
@@ -180,7 +181,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the user workspace root path</p>
 </div>
 
-</div><p></p><hr><a id="method-fetchWSEndpoint"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-fetchWSEndpoint"></a><div class="section">
 <h3 id="method-fetchwsendpoint-">Method <code>fetchWSEndpoint()</code><a class="anchor" aria-label="anchor" href="#method-fetchwsendpoint-"></a></h3>
 <p>Fetches the workspace endpoint from the D4Science ICProxy service</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
@@ -188,7 +189,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 
-</div><p></p><hr><a id="method-fetchUserProfile"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-fetchUserProfile"></a><div class="section">
 <h3 id="method-fetchuserprofile-">Method <code>fetchUserProfile()</code><a class="anchor" aria-label="anchor" href="#method-fetchuserprofile-"></a></h3>
 <p>Fetches the user profile</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
@@ -196,7 +197,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 
-</div><p></p><hr><a id="method-getWSRootID"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-getWSRootID"></a><div class="section">
 <h3 id="method-getwsrootid-">Method <code>getWSRootID()</code><a class="anchor" aria-label="anchor" href="#method-getwsrootid-"></a></h3>
 <p>Get workspace root ID</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
@@ -208,7 +209,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the workspace root ID, as <code>character</code></p>
 </div>
 
-</div><p></p><hr><a id="method-getWSItemID"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-getWSItemID"></a><div class="section">
 <h3 id="method-getwsitemid-">Method <code>getWSItemID()</code><a class="anchor" aria-label="anchor" href="#method-getwsitemid-"></a></h3>
 <p>Get workspace item ID given a <code>folderPath</code> in a parent folder</p><div class="section">
 <h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
@@ -232,7 +233,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the workspace item ID, <code>NULL</code> if no workspace item existing</p>
 </div>
 
-</div><p></p><hr><a id="method-getWSElementID"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-getWSElementID"></a><div class="section">
 <h3 id="method-getwselementid-">Method <code>getWSElementID()</code><a class="anchor" aria-label="anchor" href="#method-getwselementid-"></a></h3>
 <p>Get workspace element ID given a <code>folderPath</code> in a parent folder</p><div class="section">
 <h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
@@ -256,7 +257,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the workspace element ID, <code>NULL</code> if no workspace item existing</p>
 </div>
 
-</div><p></p><hr><a id="method-listWSItems"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-listWSItems"></a><div class="section">
 <h3 id="method-listwsitems-">Method <code>listWSItems()</code><a class="anchor" aria-label="anchor" href="#method-listwsitems-"></a></h3>
 <p>Lists workspace items given a parentFolder ID</p><div class="section">
 <h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
@@ -276,7 +277,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>an object of class <code>data.frame</code></p>
 </div>
 
-</div><p></p><hr><a id="method-listWSElements"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-listWSElements"></a><div class="section">
 <h3 id="method-listwselements-">Method <code>listWSElements()</code><a class="anchor" aria-label="anchor" href="#method-listwselements-"></a></h3>
 <p>Lists workspace elements given a parentFolder ID</p><div class="section">
 <h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
@@ -296,7 +297,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>an object of class <code>data.frame</code></p>
 </div>
 
-</div><p></p><hr><a id="method-listWSItemsByPath"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-listWSItemsByPath"></a><div class="section">
 <h3 id="method-listwsitemsbypath-">Method <code>listWSItemsByPath()</code><a class="anchor" aria-label="anchor" href="#method-listwsitemsbypath-"></a></h3>
 <p>Lists workspace items given a folder path</p><div class="section">
 <h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
@@ -316,7 +317,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>an object of class <code>data.frame</code></p>
 </div>
 
-</div><p></p><hr><a id="method-listWSElementsByPath"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-listWSElementsByPath"></a><div class="section">
 <h3 id="method-listwselementsbypath-">Method <code>listWSElementsByPath()</code><a class="anchor" aria-label="anchor" href="#method-listwselementsbypath-"></a></h3>
 <p>Lists workspace elements given a folder path</p><div class="section">
 <h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
@@ -336,7 +337,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>an object of class <code>data.frame</code></p>
 </div>
 
-</div><p></p><hr><a id="method-searchWSItemID"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-searchWSItemID"></a><div class="section">
 <h3 id="method-searchwsitemid-">Method <code>searchWSItemID()</code><a class="anchor" aria-label="anchor" href="#method-searchwsitemid-"></a></h3>
 <p>Searches for a workspace item ID given a item path</p><div class="section">
 <h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
@@ -356,7 +357,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the item ID, <code>NULL</code> if nothing found</p>
 </div>
 
-</div><p></p><hr><a id="method-searchWSFolderID"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-searchWSFolderID"></a><div class="section">
 <h3 id="method-searchwsfolderid-">Method <code>searchWSFolderID()</code><a class="anchor" aria-label="anchor" href="#method-searchwsfolderid-"></a></h3>
 <p>Searches for a workspace element ID given a item path</p><div class="section">
 <h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
@@ -376,7 +377,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the item ID, <code>NULL</code> if nothing found</p>
 </div>
 
-</div><p></p><hr><a id="method-createFolder"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-createFolder"></a><div class="section">
 <h3 id="method-createfolder-">Method <code>createFolder()</code><a class="anchor" aria-label="anchor" href="#method-createfolder-"></a></h3>
 <p>Creates a folder, given a folder path, a folder name/description. By default <code>recursive = TRUE</code> meaning 
    that a folder path matching nested folders will trigger all nested folders. Setting <code>recursive = FALSE</code>, the
@@ -421,7 +422,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the ID of the created folder</p>
 </div>
 
-</div><p></p><hr><a id="method-uploadFile"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-uploadFile"></a><div class="section">
 <h3 id="method-uploadfile-">Method <code>uploadFile()</code><a class="anchor" aria-label="anchor" href="#method-uploadfile-"></a></h3>
 <p>Uploads a file to a folder (given a folder path). The argument <code>description</code> can be used to further describe the
    file to upload. The argument <code>archive</code> (default = FALSE) indicates the type of item (FILE or ARCHIVE) to be uploaded.</p><div class="section">
@@ -459,7 +460,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the ID of the uploaded file</p>
 </div>
 
-</div><p></p><hr><a id="method-deleteItem"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-deleteItem"></a><div class="section">
 <h3 id="method-deleteitem-">Method <code>deleteItem()</code><a class="anchor" aria-label="anchor" href="#method-deleteitem-"></a></h3>
 <p>Deletes an item given its path on the workspace</p><div class="section">
 <h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
@@ -483,7 +484,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p><code>TRUE</code> if deleted, <code>FALSE</code> otherwise</p>
 </div>
 
-</div><p></p><hr><a id="method-shareItem"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-shareItem"></a><div class="section">
 <h3 id="method-shareitem-">Method <code>shareItem()</code><a class="anchor" aria-label="anchor" href="#method-shareitem-"></a></h3>
 <p>Shares an item with users</p><div class="section">
 <h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
@@ -511,15 +512,39 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p><code>TRUE</code> if shared, <code>FALSE</code> otherwise</p>
 </div>
 
-</div><p></p><hr><a id="method-getPublicFileLink"></a><div class="section">
-<h3 id="method-getpublicfilelink-">Method <code>getPublicFileLink()</code><a class="anchor" aria-label="anchor" href="#method-getpublicfilelink-"></a></h3>
-<p>Get public file link</p><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-unshareItem"></a><div class="section">
+<h3 id="method-unshareitem-">Method <code>unshareItem()</code><a class="anchor" aria-label="anchor" href="#method-unshareitem-"></a></h3>
+<p>unshare an item</p><div class="section">
 <h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getPublicFileLink</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">unshareItem</span><span class="op">(</span><span class="va">itemPath</span>, <span class="va">users</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-13">Arguments<a class="anchor" aria-label="anchor" href="#arguments-13"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>itemPath</code></dt>
+<dd><p>item path</p></dd>
+
+
+<dt><code>users</code></dt>
+<dd><p>users</p></dd>
+
+
+</dl><p></p></div>
+</div>
+<div class="section">
+<h4 id="returns-16">Returns<a class="anchor" aria-label="anchor" href="#returns-16"></a></h4>
+<p><code>TRUE</code> if unshared, <code>FALSE</code> otherwise</p>
+</div>
+
+</div><p></p><hr><a id="method-StoragehubManager-getPublicFileLink"></a><div class="section">
+<h3 id="method-getpublicfilelink-">Method <code>getPublicFileLink()</code><a class="anchor" aria-label="anchor" href="#method-getpublicfilelink-"></a></h3>
+<p>Get public file link</p><div class="section">
+<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getPublicFileLink</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>path</code></dt>
 <dd><p>file path</p></dd>
 
@@ -527,19 +552,19 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-16">Returns<a class="anchor" aria-label="anchor" href="#returns-16"></a></h4>
+<h4 id="returns-17">Returns<a class="anchor" aria-label="anchor" href="#returns-17"></a></h4>
 <p>the public file URL</p>
 </div>
 
-</div><p></p><hr><a id="method-clone"></a><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
+<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
+<h4 id="arguments-15">Arguments<a class="anchor" aria-label="anchor" href="#arguments-15"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
