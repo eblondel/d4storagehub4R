@@ -627,7 +627,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
            )
          },
          "jwt" = {
-           httr::POST(
+           httr::PUT(
              unshare_url, 
              httr::add_headers("Authorization" = paste("Bearer", self$getToken())),
              encode = "multipart",
