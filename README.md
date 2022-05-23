@@ -1,7 +1,7 @@
 [![Build Status](https://github.com/eblondel/d4storagehub4R/actions/workflows/r-cmd-check.yml/badge.svg?branch=master)](https://github.com/eblondel/d4storagehub4R/actions/workflows/r-cmd-check.yml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/d4storagehub4R)](https://cran.r-project.org/package=d4storagehub4R)
 [![cran checks](https://cranchecks.info/badges/worst/d4storagehub4R)](https://cran.r-project.org/web/checks/check_results_d4storagehub4R.html)
-[![Github_Status_Badge](https://img.shields.io/badge/Github-0.3--1-blue.svg)](https://github.com/eblondel/d4storagehub4R)
+[![Github_Status_Badge](https://img.shields.io/badge/Github-0.4-blue.svg)](https://github.com/eblondel/d4storagehub4R)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5496998.svg)](https://doi.org/10.5281/zenodo.5496998)
 
 **d4storagehub4R – R Interface to 'D4Science' 'StorageHub' API**

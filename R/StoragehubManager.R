@@ -604,6 +604,42 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(shared)
     },
     
+    #'@description unshare an item
+    #'@param itemPath item path
+    #'@param users users
+    #'@return \code{TRUE} if unshared, \code{FALSE} otherwise
+    unshareItem = function(itemPath, users){
+      pathID <- self$searchWSItemID(itemPath = itemPath)
+      if(!is.null(pathID)){
+        share_url <- sprintf("%s/items/%s/unshare", private$url_storagehub, pathID)
+        shared_req <- switch(private$token_type,
+         "gcube" = {
+           share_url <-paste0(share_url, "?gcube-token=", self$getToken())
+           httr::PUT(
+             share_url, 
+             encode = "multipart", 
+             body = body
+           )
+         },
+         "jwt" = {
+           httr::POST(
+             share_url, 
+             httr::add_headers("Authorization" = paste("Bearer", self$getToken())),
+             encode = "multipart",
+             body = body
+           )
+         }
+        )
+        if(!is.null(shared_req)) if(httr::status_code(shared_req)==200){
+          shared <- TRUE
+        }
+      }else{
+        self$WARN(sprintf("No item for path '%s'. Nothing to share!", itemPath))
+        shared <- FALSE
+      }
+      return(shared)
+    },
+    
     #'@description Get public file link
     #'@param path file path
     #'@return the public file URL

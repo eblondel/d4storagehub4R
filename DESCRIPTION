@@ -1,6 +1,6 @@
 Package: d4storagehub4R
-Version: 0.3-1
-Date: 2022-05-12
+Version: 0.4
+Date: 2022-05-23
 Title: Interface to 'D4Science' 'StorageHub' API
 Authors@R: c(
   person("Emmanuel", "Blondel", role = c("aut", "cre"), email = "emmanuel.blondel1@gmail.com", comment = c(ORCID = "0000-0002-5870-5762")))
@@ -15,5 +15,5 @@ License: MIT + file LICENSE
 URL: https://github.com/eblondel/d4storagehub4R, https://www.d4science.org/, https://dev.d4science.org/
 BugReports: https://github.com/eblondel/d4storagehub4R/issues
 LazyLoad: yes
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 Encoding: UTF-8
