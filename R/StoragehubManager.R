@@ -609,40 +609,40 @@ StoragehubManager <-  R6Class("StoragehubManager",
     #'@param users users
     #'@return \code{TRUE} if unshared, \code{FALSE} otherwise
     unshareItem = function(itemPath, users){
-      
+      unshared <- FALSE
       the_users <- sapply(users, function(x){list(users = x)})
       names(the_users) <- rep("users", length(the_users))
       body <- c(the_users)
       
       pathID <- self$searchWSItemID(itemPath = itemPath)
       if(!is.null(pathID)){
-        share_url <- sprintf("%s/items/%s/unshare", private$url_storagehub, pathID)
-        shared_req <- switch(private$token_type,
+        unshare_url <- sprintf("%s/items/%s/unshare", private$url_storagehub, pathID)
+        unshared_req <- switch(private$token_type,
          "gcube" = {
-           share_url <-paste0(share_url, "?gcube-token=", self$getToken())
+           unshare_url <-paste0(unshare_url, "?gcube-token=", self$getToken())
            httr::PUT(
-             share_url, 
+             unshare_url, 
              encode = "multipart", 
              body = body
            )
          },
          "jwt" = {
            httr::POST(
-             share_url, 
+             unshare_url, 
              httr::add_headers("Authorization" = paste("Bearer", self$getToken())),
              encode = "multipart",
              body = body
            )
          }
         )
-        if(!is.null(shared_req)) if(httr::status_code(shared_req)==200){
+        if(!is.null(unshared_req)) if(httr::status_code(unshared_req)==200){
           shared <- TRUE
         }
       }else{
         self$WARN(sprintf("No item for path '%s'. Nothing to share!", itemPath))
         shared <- FALSE
       }
-      return(shared)
+      return(unshared)
     },
     
     #'@description Get public file link
