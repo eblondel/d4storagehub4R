@@ -636,11 +636,11 @@ StoragehubManager <-  R6Class("StoragehubManager",
          }
         )
         if(!is.null(unshared_req)) if(httr::status_code(unshared_req)==200){
-          shared <- TRUE
+          unshared <- TRUE
         }
       }else{
         self$WARN(sprintf("No item for path '%s'. Nothing to share!", itemPath))
-        shared <- FALSE
+        unshared <- FALSE
       }
       return(unshared)
     },
