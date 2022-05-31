@@ -645,6 +645,35 @@ StoragehubManager <-  R6Class("StoragehubManager",
       return(unshared)
     },
     
+    #'@description Download item
+    #'@param path
+    downloadItem = function(path, wd = NULL){
+      if(is.null(wd)) wd <- getwd()
+      link <- NULL
+      pathID <- self$searchWSItemID(itemPath = path)
+      if(is.null(pathID)){
+        errMsg <- sprintf("No item for path '%s'", path)
+        self$ERROR(errMsg)
+        stop(errMsg)
+      }
+      link_url <- sprintf("%s/items/%s/download?exclude=hl:accounting", private$url_storagehub, pathID)
+      pl_req <- switch(private$token_type,
+       "gcube" = {
+         link_url <-paste0(link_url, "&gcube-token=", self$getToken())
+         httr::GET(link_url)
+       },
+       "jwt" = {
+         httr::GET(link_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+       }
+      )
+      if(!is.null(pl_req)){
+        data <- httr::content(pl_req, type = "raw")
+        writeBin(data, file.path(wd, basename(path)))
+        return(file.path(wd, basename(path)))
+      }
+      return(NULL)
+    },
+    
     #'@description Get public file link
     #'@param path file path
     #'@return the public file URL
