@@ -28,7 +28,7 @@ test_that("all Storage hub methods",{
   expect_error(STORAGE$createFolder("folder1/subfolder2/subfolder3", name = "d4storagehub4R",  recursive = FALSE))
   created <- STORAGE$createFolder("folder1/subfolder2/subfolder3", name = "d4storagehub4R",  recursive = TRUE)
   expect_is(created, "character")
-  folders <- STORAGE$listWSElementsByPath(folderPath = "folder1/subfolder2/subfolder3")
+  folders <- STORAGE$listWSItemsByPath(folderPath = "folder1/subfolder2/subfolder3")
   expect_is(folders, "data.frame")
   expect_equal(folders[1,]$id, created)
   
