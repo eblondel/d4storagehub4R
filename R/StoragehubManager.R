@@ -667,7 +667,8 @@ StoragehubManager <-  R6Class("StoragehubManager",
     },
     
     #'@description Download item
-    #'@param path
+    #'@param path path
+    #'@param wd working directory where to download the item
     downloadItem = function(path, wd = NULL){
       if(is.null(wd)) wd <- getwd()
       link <- NULL

@@ -54,6 +54,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-StoragehubManager-getWSRootID}{\code{StoragehubManager$getWSRootID()}}
 \item \href{#method-StoragehubManager-getWSItemID}{\code{StoragehubManager$getWSItemID()}}
 \item \href{#method-StoragehubManager-getWSElementID}{\code{StoragehubManager$getWSElementID()}}
+\item \href{#method-StoragehubManager-getWSVREFolderID}{\code{StoragehubManager$getWSVREFolderID()}}
 \item \href{#method-StoragehubManager-listWSItems}{\code{StoragehubManager$listWSItems()}}
 \item \href{#method-StoragehubManager-listWSElements}{\code{StoragehubManager$listWSElements()}}
 \item \href{#method-StoragehubManager-listWSItemsByPath}{\code{StoragehubManager$listWSItemsByPath()}}
@@ -65,6 +66,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-StoragehubManager-deleteItem}{\code{StoragehubManager$deleteItem()}}
 \item \href{#method-StoragehubManager-shareItem}{\code{StoragehubManager$shareItem()}}
 \item \href{#method-StoragehubManager-unshareItem}{\code{StoragehubManager$unshareItem()}}
+\item \href{#method-StoragehubManager-downloadItem}{\code{StoragehubManager$downloadItem()}}
 \item \href{#method-StoragehubManager-getPublicFileLink}{\code{StoragehubManager$getPublicFileLink()}}
 \item \href{#method-StoragehubManager-clone}{\code{StoragehubManager$clone()}}
 }
@@ -225,6 +227,19 @@ Get workspace element ID given a \code{folderPath} in a parent folder
 }
 \subsection{Returns}{
 the workspace element ID, \code{NULL} if no workspace item existing
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-StoragehubManager-getWSVREFolderID"></a>}}
+\if{latex}{\out{\hypertarget{method-StoragehubManager-getWSVREFolderID}{}}}
+\subsection{Method \code{getWSVREFolderID()}}{
+Get VRE Folder ID
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$getWSVREFolderID()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+the VRE folder ID, as \code{character}
 }
 }
 \if{html}{\out{<hr>}}
@@ -482,6 +497,25 @@ unshare an item
 }
 \subsection{Returns}{
 \code{TRUE} if unshared, \code{FALSE} otherwise
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-StoragehubManager-downloadItem"></a>}}
+\if{latex}{\out{\hypertarget{method-StoragehubManager-downloadItem}{}}}
+\subsection{Method \code{downloadItem()}}{
+Download item
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$downloadItem(path, wd = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{path}}{path}
+
+\item{\code{wd}}{working directory where to download the item}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}
