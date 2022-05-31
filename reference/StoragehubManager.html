@@ -63,10 +63,6 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
     <h2>Note</h2>
     <p>Main user class to be used with <span class="pkg">d4storagehub4R</span></p>
 <p>Deprecated</p>
-<p>Deprecated, use <code>getWSItemID</code></p>
-<p>Deprecated, use <code>listWSItems</code></p>
-<p>Deprecated, use <code>listWSItemsByPath</code></p>
-<p>Deprecated, use <code>searchWSItemID</code></p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -88,16 +84,16 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
 <li><p><a href="#method-StoragehubManager-getUserWorkspace"><code>StoragehubManager$getUserWorkspace()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-fetchWSEndpoint"><code>StoragehubManager$fetchWSEndpoint()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-fetchUserProfile"><code>StoragehubManager$fetchUserProfile()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getWSRoot"><code>StoragehubManager$getWSRoot()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-getWSRootID"><code>StoragehubManager$getWSRootID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getWSItem"><code>StoragehubManager$getWSItem()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-getWSItemID"><code>StoragehubManager$getWSItemID()</code></a></p></li>
-<li><p><a href="#method-StoragehubManager-getWSElementID"><code>StoragehubManager$getWSElementID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getWSVREFolder"><code>StoragehubManager$getWSVREFolder()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-getWSVREFolderID"><code>StoragehubManager$getWSVREFolderID()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-listWSItems"><code>StoragehubManager$listWSItems()</code></a></p></li>
-<li><p><a href="#method-StoragehubManager-listWSElements"><code>StoragehubManager$listWSElements()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-listWSItemsByPath"><code>StoragehubManager$listWSItemsByPath()</code></a></p></li>
-<li><p><a href="#method-StoragehubManager-listWSElementsByPath"><code>StoragehubManager$listWSElementsByPath()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-searchWSItem"><code>StoragehubManager$searchWSItem()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-searchWSItemID"><code>StoragehubManager$searchWSItemID()</code></a></p></li>
-<li><p><a href="#method-StoragehubManager-searchWSFolderID"><code>StoragehubManager$searchWSFolderID()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-createFolder"><code>StoragehubManager$createFolder()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-uploadFile"><code>StoragehubManager$uploadFile()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-deleteItem"><code>StoragehubManager$deleteItem()</code></a></p></li>
@@ -199,23 +195,39 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 
-</div><p></p><hr><a id="method-StoragehubManager-getWSRootID"></a><div class="section">
-<h3 id="method-getwsrootid-">Method <code>getWSRootID()</code><a class="anchor" aria-label="anchor" href="#method-getwsrootid-"></a></h3>
-<p>Get workspace root ID</p><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-getWSRoot"></a><div class="section">
+<h3 id="method-getwsroot-">Method <code>getWSRoot()</code><a class="anchor" aria-label="anchor" href="#method-getwsroot-"></a></h3>
+<p>Get workspace root</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSRootID</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSRoot</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="returns-3">Returns<a class="anchor" aria-label="anchor" href="#returns-3"></a></h4>
+<p>the workspace root, as <code>list</code></p>
+</div>
+
+</div><p></p><hr><a id="method-StoragehubManager-getWSRootID"></a><div class="section">
+<h3 id="method-getwsrootid-">Method <code>getWSRootID()</code><a class="anchor" aria-label="anchor" href="#method-getwsrootid-"></a></h3>
+<p>Get workspace root ID</p><div class="section">
+<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSRootID</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-4">Returns<a class="anchor" aria-label="anchor" href="#returns-4"></a></h4>
 <p>the workspace root ID, as <code>character</code></p>
 </div>
 
-</div><p></p><hr><a id="method-StoragehubManager-getWSItemID"></a><div class="section">
-<h3 id="method-getwsitemid-">Method <code>getWSItemID()</code><a class="anchor" aria-label="anchor" href="#method-getwsitemid-"></a></h3>
-<p>Get workspace item ID given a <code>folderPath</code> in a parent folder</p><div class="section">
-<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSItemID</span><span class="op">(</span>parentFolderID <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
+</div><p></p><hr><a id="method-StoragehubManager-getWSItem"></a><div class="section">
+<h3 id="method-getwsitem-">Method <code>getWSItem()</code><a class="anchor" aria-label="anchor" href="#method-getwsitem-"></a></h3>
+<p>Get workspace item given a <code>itemPath</code> in a parent folder</p><div class="section">
+<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSItem</span><span class="op">(</span>
+  parentFolderID <span class="op">=</span> <span class="cn">NULL</span>,
+  <span class="va">itemPath</span>,
+  showHidden <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -224,22 +236,30 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <dd><p>parent folder ID</p></dd>
 
 
-<dt><code>folderPath</code></dt>
-<dd><p>folder path</p></dd>
+<dt><code>itemPath</code></dt>
+<dd><p>item path</p></dd>
+
+
+<dt><code>showHidden</code></dt>
+<dd><p>show hidden files</p></dd>
 
 
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-4">Returns<a class="anchor" aria-label="anchor" href="#returns-4"></a></h4>
-<p>the workspace item ID, <code>NULL</code> if no workspace item existing</p>
+<h4 id="returns-5">Returns<a class="anchor" aria-label="anchor" href="#returns-5"></a></h4>
+<p>the workspace item, <code>NULL</code> if no workspace item existing</p>
 </div>
 
-</div><p></p><hr><a id="method-StoragehubManager-getWSElementID"></a><div class="section">
-<h3 id="method-getwselementid-">Method <code>getWSElementID()</code><a class="anchor" aria-label="anchor" href="#method-getwselementid-"></a></h3>
-<p>Get workspace element ID given a <code>folderPath</code> in a parent folder</p><div class="section">
-<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSElementID</span><span class="op">(</span>parentFolderID <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
+</div><p></p><hr><a id="method-StoragehubManager-getWSItemID"></a><div class="section">
+<h3 id="method-getwsitemid-">Method <code>getWSItemID()</code><a class="anchor" aria-label="anchor" href="#method-getwsitemid-"></a></h3>
+<p>Get workspace item ID given a <code>itemPath</code> in a parent folder</p><div class="section">
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSItemID</span><span class="op">(</span>
+  parentFolderID <span class="op">=</span> <span class="cn">NULL</span>,
+  <span class="va">itemPath</span>,
+  showHidden <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -248,34 +268,50 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <dd><p>parent folder ID</p></dd>
 
 
-<dt><code>folderPath</code></dt>
-<dd><p>folder path</p></dd>
+<dt><code>itemPath</code></dt>
+<dd><p>item path</p></dd>
+
+
+<dt><code>showHidden</code></dt>
+<dd><p>show hidden files</p></dd>
 
 
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-5">Returns<a class="anchor" aria-label="anchor" href="#returns-5"></a></h4>
-<p>the workspace element ID, <code>NULL</code> if no workspace item existing</p>
+<h4 id="returns-6">Returns<a class="anchor" aria-label="anchor" href="#returns-6"></a></h4>
+<p>the workspace item ID, <code>NULL</code> if no workspace item existing</p>
+</div>
+
+</div><p></p><hr><a id="method-StoragehubManager-getWSVREFolder"></a><div class="section">
+<h3 id="method-getwsvrefolder-">Method <code>getWSVREFolder()</code><a class="anchor" aria-label="anchor" href="#method-getwsvrefolder-"></a></h3>
+<p>Get VRE Folder</p><div class="section">
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSVREFolder</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-7">Returns<a class="anchor" aria-label="anchor" href="#returns-7"></a></h4>
+<p>the VRE folder, as <code>list</code></p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-getWSVREFolderID"></a><div class="section">
 <h3 id="method-getwsvrefolderid-">Method <code>getWSVREFolderID()</code><a class="anchor" aria-label="anchor" href="#method-getwsvrefolderid-"></a></h3>
 <p>Get VRE Folder ID</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSVREFolderID</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="returns-6">Returns<a class="anchor" aria-label="anchor" href="#returns-6"></a></h4>
+<h4 id="returns-8">Returns<a class="anchor" aria-label="anchor" href="#returns-8"></a></h4>
 <p>the VRE folder ID, as <code>character</code></p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-listWSItems"></a><div class="section">
 <h3 id="method-listwsitems-">Method <code>listWSItems()</code><a class="anchor" aria-label="anchor" href="#method-listwsitems-"></a></h3>
 <p>Lists workspace items given a parentFolder ID</p><div class="section">
-<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSItems</span><span class="op">(</span>parentFolderID <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
+<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSItems</span><span class="op">(</span>parentFolderID <span class="op">=</span> <span class="cn">NULL</span>, showHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -284,44 +320,8 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <dd><p>parent folder ID</p></dd>
 
 
-</dl><p></p></div>
-</div>
-<div class="section">
-<h4 id="returns-7">Returns<a class="anchor" aria-label="anchor" href="#returns-7"></a></h4>
-<p>an object of class <code>data.frame</code></p>
-</div>
-
-</div><p></p><hr><a id="method-StoragehubManager-listWSElements"></a><div class="section">
-<h3 id="method-listwselements-">Method <code>listWSElements()</code><a class="anchor" aria-label="anchor" href="#method-listwselements-"></a></h3>
-<p>Lists workspace elements given a parentFolder ID</p><div class="section">
-<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSElements</span><span class="op">(</span>parentFolderID <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>parentFolderID</code></dt>
-<dd><p>parent folder ID</p></dd>
-
-
-</dl><p></p></div>
-</div>
-<div class="section">
-<h4 id="returns-8">Returns<a class="anchor" aria-label="anchor" href="#returns-8"></a></h4>
-<p>an object of class <code>data.frame</code></p>
-</div>
-
-</div><p></p><hr><a id="method-StoragehubManager-listWSItemsByPath"></a><div class="section">
-<h3 id="method-listwsitemsbypath-">Method <code>listWSItemsByPath()</code><a class="anchor" aria-label="anchor" href="#method-listwsitemsbypath-"></a></h3>
-<p>Lists workspace items given a folder path</p><div class="section">
-<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSItemsByPath</span><span class="op">(</span><span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>folderPath</code></dt>
-<dd><p>folder path where to list items</p></dd>
+<dt><code>showHidden</code></dt>
+<dd><p>show hidden files</p></dd>
 
 
 </dl><p></p></div>
@@ -331,17 +331,21 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>an object of class <code>data.frame</code></p>
 </div>
 
-</div><p></p><hr><a id="method-StoragehubManager-listWSElementsByPath"></a><div class="section">
-<h3 id="method-listwselementsbypath-">Method <code>listWSElementsByPath()</code><a class="anchor" aria-label="anchor" href="#method-listwselementsbypath-"></a></h3>
-<p>Lists workspace elements given a folder path</p><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-listWSItemsByPath"></a><div class="section">
+<h3 id="method-listwsitemsbypath-">Method <code>listWSItemsByPath()</code><a class="anchor" aria-label="anchor" href="#method-listwsitemsbypath-"></a></h3>
+<p>Lists workspace items given a folder path</p><div class="section">
 <h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSElementsByPath</span><span class="op">(</span><span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSItemsByPath</span><span class="op">(</span><span class="va">folderPath</span>, showHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
+<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>folderPath</code></dt>
-<dd><p>folder path where to list elements</p></dd>
+<dd><p>folder path where to list items</p></dd>
+
+
+<dt><code>showHidden</code></dt>
+<dd><p>show hidden files</p></dd>
 
 
 </dl><p></p></div>
@@ -351,44 +355,68 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>an object of class <code>data.frame</code></p>
 </div>
 
-</div><p></p><hr><a id="method-StoragehubManager-searchWSItemID"></a><div class="section">
-<h3 id="method-searchwsitemid-">Method <code>searchWSItemID()</code><a class="anchor" aria-label="anchor" href="#method-searchwsitemid-"></a></h3>
-<p>Searches for a workspace item ID given a item path</p><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-searchWSItem"></a><div class="section">
+<h3 id="method-searchwsitem-">Method <code>searchWSItem()</code><a class="anchor" aria-label="anchor" href="#method-searchwsitem-"></a></h3>
+<p>Searches for a workspace item given a item path</p><div class="section">
 <h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">searchWSItemID</span><span class="op">(</span><span class="va">itemPath</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">searchWSItem</span><span class="op">(</span>
+  <span class="va">itemPath</span>,
+  includeVreFolder <span class="op">=</span> <span class="cn">TRUE</span>,
+  showHidden <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
+<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>itemPath</code></dt>
 <dd><p>path of the item</p></dd>
+
+
+<dt><code>includeVreFolder</code></dt>
+<dd><p>search also in VRE folder</p></dd>
+
+
+<dt><code>showHidden</code></dt>
+<dd><p>show hidden files</p></dd>
 
 
 </dl><p></p></div>
 </div>
 <div class="section">
 <h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
-<p>the item ID, <code>NULL</code> if nothing found</p>
+<p>the item, <code>NULL</code> if nothing found</p>
 </div>
 
-</div><p></p><hr><a id="method-StoragehubManager-searchWSFolderID"></a><div class="section">
-<h3 id="method-searchwsfolderid-">Method <code>searchWSFolderID()</code><a class="anchor" aria-label="anchor" href="#method-searchwsfolderid-"></a></h3>
-<p>Searches for a workspace element ID given a item path</p><div class="section">
+</div><p></p><hr><a id="method-StoragehubManager-searchWSItemID"></a><div class="section">
+<h3 id="method-searchwsitemid-">Method <code>searchWSItemID()</code><a class="anchor" aria-label="anchor" href="#method-searchwsitemid-"></a></h3>
+<p>Searches for a workspace item ID given a item path</p><div class="section">
 <h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">searchWSFolderID</span><span class="op">(</span><span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">searchWSItemID</span><span class="op">(</span>
+  <span class="va">itemPath</span>,
+  includeVreFolder <span class="op">=</span> <span class="cn">TRUE</span>,
+  showHidden <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>folderPath</code></dt>
-<dd><p>path of the element</p></dd>
+<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>itemPath</code></dt>
+<dd><p>path of the item</p></dd>
+
+
+<dt><code>includeVreFolder</code></dt>
+<dd><p>search also in VRE folder</p></dd>
+
+
+<dt><code>showHidden</code></dt>
+<dd><p>show hidden files</p></dd>
 
 
 </dl><p></p></div>
 </div>
 <div class="section">
 <h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
-<p>the item ID, <code>NULL</code> if nothing found</p>
+<p>the item, <code>NULL</code> if nothing found</p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-createFolder"></a><div class="section">
@@ -396,10 +424,12 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>Creates a folder, given a folder path, a folder name/description. By default <code>recursive = TRUE</code> meaning 
    that a folder path matching nested folders will trigger all nested folders. Setting <code>recursive = FALSE</code>, the
    folder creation will work only if the folder path matches an existing folder. The <code>hidden</code> (default 
-   <code>FALSE</code>) argument can be used to set hidden folders on the workspace.</p><div class="section">
+   <code>FALSE</code>) argument can be used to set hidden folders on the workspace. Using <code>folderID</code>, <code>recursive</code> will be
+   set to <code>FALSE</code>.</p><div class="section">
 <h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">createFolder</span><span class="op">(</span>
   folderPath <span class="op">=</span> <span class="cn">NULL</span>,
+  folderID <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">name</span>,
   description <span class="op">=</span> <span class="st">""</span>,
   hidden <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -408,9 +438,13 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="section">
-<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
+<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>folderPath</code></dt>
 <dd><p>parent folder path where to create the folder</p></dd>
+
+
+<dt><code>folderID</code></dt>
+<dd><p>parent folder ID where to create the folder</p></dd>
 
 
 <dt><code>name</code></dt>
@@ -451,7 +485,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="section">
-<h4 id="arguments-10">Arguments<a class="anchor" aria-label="anchor" href="#arguments-10"></a></h4>
+<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>folderPath</code></dt>
 <dd><p>folder path where to upload the file</p></dd>
 
@@ -487,7 +521,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="section">
-<h4 id="arguments-11">Arguments<a class="anchor" aria-label="anchor" href="#arguments-11"></a></h4>
+<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>itemPath</code></dt>
 <dd><p>item path</p></dd>
 
@@ -511,7 +545,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="section">
-<h4 id="arguments-12">Arguments<a class="anchor" aria-label="anchor" href="#arguments-12"></a></h4>
+<h4 id="arguments-10">Arguments<a class="anchor" aria-label="anchor" href="#arguments-10"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>itemPath</code></dt>
 <dd><p>item path</p></dd>
 
@@ -539,7 +573,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="section">
-<h4 id="arguments-13">Arguments<a class="anchor" aria-label="anchor" href="#arguments-13"></a></h4>
+<h4 id="arguments-11">Arguments<a class="anchor" aria-label="anchor" href="#arguments-11"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>itemPath</code></dt>
 <dd><p>item path</p></dd>
 
@@ -559,11 +593,11 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <h3 id="method-downloaditem-">Method <code>downloadItem()</code><a class="anchor" aria-label="anchor" href="#method-downloaditem-"></a></h3>
 <p>Download item</p><div class="section">
 <h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">downloadItem</span><span class="op">(</span><span class="va">path</span>, wd <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">downloadItem</span><span class="op">(</span>path <span class="op">=</span> <span class="cn">NULL</span>, wd <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
+<h4 id="arguments-12">Arguments<a class="anchor" aria-label="anchor" href="#arguments-12"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>path</code></dt>
 <dd><p>path</p></dd>
 
@@ -583,7 +617,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="section">
-<h4 id="arguments-15">Arguments<a class="anchor" aria-label="anchor" href="#arguments-15"></a></h4>
+<h4 id="arguments-13">Arguments<a class="anchor" aria-label="anchor" href="#arguments-13"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>path</code></dt>
 <dd><p>file path</p></dd>
 
@@ -603,7 +637,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="section">
-<h4 id="arguments-16">Arguments<a class="anchor" aria-label="anchor" href="#arguments-16"></a></h4>
+<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
