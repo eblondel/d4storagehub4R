@@ -196,6 +196,27 @@ StoragehubManager <-  R6Class("StoragehubManager",
       self$getWSItemID(parentFolderID = parentFolderID, folderPath = folderPath)
     },
     
+    #'@description Get VRE Folder ID
+    #'@return the VRE folder ID, as \code{character}
+    getWSVREFolderID = function(){
+      outroot <- NULL
+      root_req <- switch(private$token_type,
+       "gcube" = {
+         rootUrl <- paste0(private$url_storagehub, "/vrefolder?exclude=hl:accounting&gcube-token=", self$getToken())
+         httr::GET(rootUrl)
+       },
+       "jwt" = {
+         rootUrl <- paste0(private$url_storagehub, "/vrefolder?exclude=hl:accounting")
+         httr::GET(rootUrl, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+       }
+      )
+      if(!is.null(root_req)){
+        rootDoc <- httr::content(root_req)
+        outroot <- rootDoc$item$id
+      }
+      return(outroot)
+    },
+    
     #'@description Lists workspace items given a parentFolder ID
     #'@param parentFolderID parent folder ID
     #'@return an object of class \code{data.frame}
