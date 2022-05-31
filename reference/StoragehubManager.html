@@ -91,6 +91,7 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
 <li><p><a href="#method-StoragehubManager-getWSRootID"><code>StoragehubManager$getWSRootID()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-getWSItemID"><code>StoragehubManager$getWSItemID()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-getWSElementID"><code>StoragehubManager$getWSElementID()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-getWSVREFolderID"><code>StoragehubManager$getWSVREFolderID()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-listWSItems"><code>StoragehubManager$listWSItems()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-listWSElements"><code>StoragehubManager$listWSElements()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-listWSItemsByPath"><code>StoragehubManager$listWSItemsByPath()</code></a></p></li>
@@ -102,6 +103,7 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
 <li><p><a href="#method-StoragehubManager-deleteItem"><code>StoragehubManager$deleteItem()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-shareItem"><code>StoragehubManager$shareItem()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-unshareItem"><code>StoragehubManager$unshareItem()</code></a></p></li>
+<li><p><a href="#method-StoragehubManager-downloadItem"><code>StoragehubManager$downloadItem()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-getPublicFileLink"><code>StoragehubManager$getPublicFileLink()</code></a></p></li>
 <li><p><a href="#method-StoragehubManager-clone"><code>StoragehubManager$clone()</code></a></p></li>
 </ul></div><p><details><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="ERROR"><a href="d4storagehub4RLogger.html#method-ERROR"><code>d4storagehub4R::d4storagehub4RLogger$ERROR()</code></a></span></li>
@@ -257,10 +259,22 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <p>the workspace element ID, <code>NULL</code> if no workspace item existing</p>
 </div>
 
+</div><p></p><hr><a id="method-StoragehubManager-getWSVREFolderID"></a><div class="section">
+<h3 id="method-getwsvrefolderid-">Method <code>getWSVREFolderID()</code><a class="anchor" aria-label="anchor" href="#method-getwsvrefolderid-"></a></h3>
+<p>Get VRE Folder ID</p><div class="section">
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getWSVREFolderID</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="returns-6">Returns<a class="anchor" aria-label="anchor" href="#returns-6"></a></h4>
+<p>the VRE folder ID, as <code>character</code></p>
+</div>
+
 </div><p></p><hr><a id="method-StoragehubManager-listWSItems"></a><div class="section">
 <h3 id="method-listwsitems-">Method <code>listWSItems()</code><a class="anchor" aria-label="anchor" href="#method-listwsitems-"></a></h3>
 <p>Lists workspace items given a parentFolder ID</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSItems</span><span class="op">(</span>parentFolderID <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -273,14 +287,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-6">Returns<a class="anchor" aria-label="anchor" href="#returns-6"></a></h4>
+<h4 id="returns-7">Returns<a class="anchor" aria-label="anchor" href="#returns-7"></a></h4>
 <p>an object of class <code>data.frame</code></p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-listWSElements"></a><div class="section">
 <h3 id="method-listwselements-">Method <code>listWSElements()</code><a class="anchor" aria-label="anchor" href="#method-listwselements-"></a></h3>
 <p>Lists workspace elements given a parentFolder ID</p><div class="section">
-<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSElements</span><span class="op">(</span>parentFolderID <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -293,14 +307,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-7">Returns<a class="anchor" aria-label="anchor" href="#returns-7"></a></h4>
+<h4 id="returns-8">Returns<a class="anchor" aria-label="anchor" href="#returns-8"></a></h4>
 <p>an object of class <code>data.frame</code></p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-listWSItemsByPath"></a><div class="section">
 <h3 id="method-listwsitemsbypath-">Method <code>listWSItemsByPath()</code><a class="anchor" aria-label="anchor" href="#method-listwsitemsbypath-"></a></h3>
 <p>Lists workspace items given a folder path</p><div class="section">
-<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
+<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSItemsByPath</span><span class="op">(</span><span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -313,14 +327,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-8">Returns<a class="anchor" aria-label="anchor" href="#returns-8"></a></h4>
+<h4 id="returns-9">Returns<a class="anchor" aria-label="anchor" href="#returns-9"></a></h4>
 <p>an object of class <code>data.frame</code></p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-listWSElementsByPath"></a><div class="section">
 <h3 id="method-listwselementsbypath-">Method <code>listWSElementsByPath()</code><a class="anchor" aria-label="anchor" href="#method-listwselementsbypath-"></a></h3>
 <p>Lists workspace elements given a folder path</p><div class="section">
-<h4 id="usage-12">Usage<a class="anchor" aria-label="anchor" href="#usage-12"></a></h4>
+<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">listWSElementsByPath</span><span class="op">(</span><span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -333,14 +347,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-9">Returns<a class="anchor" aria-label="anchor" href="#returns-9"></a></h4>
+<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
 <p>an object of class <code>data.frame</code></p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-searchWSItemID"></a><div class="section">
 <h3 id="method-searchwsitemid-">Method <code>searchWSItemID()</code><a class="anchor" aria-label="anchor" href="#method-searchwsitemid-"></a></h3>
 <p>Searches for a workspace item ID given a item path</p><div class="section">
-<h4 id="usage-13">Usage<a class="anchor" aria-label="anchor" href="#usage-13"></a></h4>
+<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">searchWSItemID</span><span class="op">(</span><span class="va">itemPath</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -353,14 +367,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-10">Returns<a class="anchor" aria-label="anchor" href="#returns-10"></a></h4>
+<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
 <p>the item ID, <code>NULL</code> if nothing found</p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-searchWSFolderID"></a><div class="section">
 <h3 id="method-searchwsfolderid-">Method <code>searchWSFolderID()</code><a class="anchor" aria-label="anchor" href="#method-searchwsfolderid-"></a></h3>
 <p>Searches for a workspace element ID given a item path</p><div class="section">
-<h4 id="usage-14">Usage<a class="anchor" aria-label="anchor" href="#usage-14"></a></h4>
+<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">searchWSFolderID</span><span class="op">(</span><span class="va">folderPath</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -373,7 +387,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-11">Returns<a class="anchor" aria-label="anchor" href="#returns-11"></a></h4>
+<h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
 <p>the item ID, <code>NULL</code> if nothing found</p>
 </div>
 
@@ -383,7 +397,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
    that a folder path matching nested folders will trigger all nested folders. Setting <code>recursive = FALSE</code>, the
    folder creation will work only if the folder path matches an existing folder. The <code>hidden</code> (default 
    <code>FALSE</code>) argument can be used to set hidden folders on the workspace.</p><div class="section">
-<h4 id="usage-15">Usage<a class="anchor" aria-label="anchor" href="#usage-15"></a></h4>
+<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">createFolder</span><span class="op">(</span>
   folderPath <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">name</span>,
@@ -418,7 +432,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-12">Returns<a class="anchor" aria-label="anchor" href="#returns-12"></a></h4>
+<h4 id="returns-13">Returns<a class="anchor" aria-label="anchor" href="#returns-13"></a></h4>
 <p>the ID of the created folder</p>
 </div>
 
@@ -426,7 +440,7 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <h3 id="method-uploadfile-">Method <code>uploadFile()</code><a class="anchor" aria-label="anchor" href="#method-uploadfile-"></a></h3>
 <p>Uploads a file to a folder (given a folder path). The argument <code>description</code> can be used to further describe the
    file to upload. The argument <code>archive</code> (default = FALSE) indicates the type of item (FILE or ARCHIVE) to be uploaded.</p><div class="section">
-<h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
+<h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">uploadFile</span><span class="op">(</span>
   folderPath <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">file</span>,
@@ -456,14 +470,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-13">Returns<a class="anchor" aria-label="anchor" href="#returns-13"></a></h4>
+<h4 id="returns-14">Returns<a class="anchor" aria-label="anchor" href="#returns-14"></a></h4>
 <p>the ID of the uploaded file</p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-deleteItem"></a><div class="section">
 <h3 id="method-deleteitem-">Method <code>deleteItem()</code><a class="anchor" aria-label="anchor" href="#method-deleteitem-"></a></h3>
 <p>Deletes an item given its path on the workspace</p><div class="section">
-<h4 id="usage-17">Usage<a class="anchor" aria-label="anchor" href="#usage-17"></a></h4>
+<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">deleteItem</span><span class="op">(</span><span class="va">itemPath</span>, force <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -480,14 +494,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-14">Returns<a class="anchor" aria-label="anchor" href="#returns-14"></a></h4>
+<h4 id="returns-15">Returns<a class="anchor" aria-label="anchor" href="#returns-15"></a></h4>
 <p><code>TRUE</code> if deleted, <code>FALSE</code> otherwise</p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-shareItem"></a><div class="section">
 <h3 id="method-shareitem-">Method <code>shareItem()</code><a class="anchor" aria-label="anchor" href="#method-shareitem-"></a></h3>
 <p>Shares an item with users</p><div class="section">
-<h4 id="usage-18">Usage<a class="anchor" aria-label="anchor" href="#usage-18"></a></h4>
+<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">shareItem</span><span class="op">(</span><span class="va">itemPath</span>, <span class="va">defaultAccessType</span>, <span class="va">users</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -508,14 +522,14 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-15">Returns<a class="anchor" aria-label="anchor" href="#returns-15"></a></h4>
+<h4 id="returns-16">Returns<a class="anchor" aria-label="anchor" href="#returns-16"></a></h4>
 <p><code>TRUE</code> if shared, <code>FALSE</code> otherwise</p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-unshareItem"></a><div class="section">
 <h3 id="method-unshareitem-">Method <code>unshareItem()</code><a class="anchor" aria-label="anchor" href="#method-unshareitem-"></a></h3>
 <p>unshare an item</p><div class="section">
-<h4 id="usage-19">Usage<a class="anchor" aria-label="anchor" href="#usage-19"></a></h4>
+<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">unshareItem</span><span class="op">(</span><span class="va">itemPath</span>, <span class="va">users</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -532,19 +546,39 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-16">Returns<a class="anchor" aria-label="anchor" href="#returns-16"></a></h4>
+<h4 id="returns-17">Returns<a class="anchor" aria-label="anchor" href="#returns-17"></a></h4>
 <p><code>TRUE</code> if unshared, <code>FALSE</code> otherwise</p>
+</div>
+
+</div><p></p><hr><a id="method-StoragehubManager-downloadItem"></a><div class="section">
+<h3 id="method-downloaditem-">Method <code>downloadItem()</code><a class="anchor" aria-label="anchor" href="#method-downloaditem-"></a></h3>
+<p>Download item</p><div class="section">
+<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">downloadItem</span><span class="op">(</span><span class="va">path</span>, wd <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>path</code></dt>
+<dd><p>path</p></dd>
+
+
+<dt><code>wd</code></dt>
+<dd><p>working directory where to download the item</p></dd>
+
+
+</dl><p></p></div>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-getPublicFileLink"></a><div class="section">
 <h3 id="method-getpublicfilelink-">Method <code>getPublicFileLink()</code><a class="anchor" aria-label="anchor" href="#method-getpublicfilelink-"></a></h3>
 <p>Get public file link</p><div class="section">
-<h4 id="usage-20">Usage<a class="anchor" aria-label="anchor" href="#usage-20"></a></h4>
+<h4 id="usage-22">Usage<a class="anchor" aria-label="anchor" href="#usage-22"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">getPublicFileLink</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-14">Arguments<a class="anchor" aria-label="anchor" href="#arguments-14"></a></h4>
+<h4 id="arguments-15">Arguments<a class="anchor" aria-label="anchor" href="#arguments-15"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>path</code></dt>
 <dd><p>file path</p></dd>
 
@@ -552,19 +586,19 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </dl><p></p></div>
 </div>
 <div class="section">
-<h4 id="returns-17">Returns<a class="anchor" aria-label="anchor" href="#returns-17"></a></h4>
+<h4 id="returns-18">Returns<a class="anchor" aria-label="anchor" href="#returns-18"></a></h4>
 <p>the public file URL</p>
 </div>
 
 </div><p></p><hr><a id="method-StoragehubManager-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-21">Usage<a class="anchor" aria-label="anchor" href="#usage-21"></a></h4>
+<h4 id="usage-23">Usage<a class="anchor" aria-label="anchor" href="#usage-23"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">StoragehubManager</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-15">Arguments<a class="anchor" aria-label="anchor" href="#arguments-15"></a></h4>
+<h4 id="arguments-16">Arguments<a class="anchor" aria-label="anchor" href="#arguments-16"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
