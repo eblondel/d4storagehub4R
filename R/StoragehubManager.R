@@ -436,17 +436,22 @@ StoragehubManager <-  R6Class("StoragehubManager",
     #'@description  Uploads a file to a folder (given a folder path). The argument \code{description} can be used to further describe the
     #'    file to upload. The argument \code{archive} (default = FALSE) indicates the type of item (FILE or ARCHIVE) to be uploaded.
     #'@param folderPath folder path where to upload the file
+    #'@param folderID folder ID where to upload the file
     #'@param file file to upload
     #'@param description file description, default would be the file basename
     #'@param archive archive, default is \code{FALSE} 
     #'@return the ID of the uploaded file   
-    uploadFile = function(folderPath = NULL, file, description = basename(file), archive = FALSE){
+    uploadFile = function(folderPath = NULL, folderID = NULL, file, description = basename(file), archive = FALSE){
       self$INFO(sprintf("Uploading file '%s' at '%s'...", file, folderPath))
-      if(is.null(folderPath)) folderPath = self$getUserWorkspace()
+      if(is.null(folderPath) && is.null(folderID)) folderPath = self$getUserWorkspace()
       
       name = basename(file)
-      folderPath <- private$normalizeFolderPath(folderPath)
-      pathID <- self$searchWSItemID(itemPath = folderPath)
+      pathID <- NULL
+      if(!is.null(folderPath)){
+        folderPath <- private$normalizeFolderPath(folderPath)
+        pathID <- self$searchWSItemID(itemPath = folderPath)
+      }
+      if(!is.null(folderID)) pathID <- folderID
       if(is.null(pathID)){
         errMsg <- sprintf("No folder for path '%s'", folderPath)
         self$ERROR(errMsg)

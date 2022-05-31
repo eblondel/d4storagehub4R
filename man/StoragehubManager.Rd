@@ -408,6 +408,7 @@ Uploads a file to a folder (given a folder path). The argument \code{description
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$uploadFile(
   folderPath = NULL,
+  folderID = NULL,
   file,
   description = basename(file),
   archive = FALSE
@@ -418,6 +419,8 @@ Uploads a file to a folder (given a folder path). The argument \code{description
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{folderPath}}{folder path where to upload the file}
+
+\item{\code{folderID}}{folder ID where to upload the file}
 
 \item{\code{file}}{file to upload}
 
