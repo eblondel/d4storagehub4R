@@ -276,7 +276,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
       
       if (itemPath==paste("/Home/",self$getUserProfile()$username,"/Workspace",sep="") || 
           itemPath==paste("/Home/",self$getUserProfile()$username,"/Workspace/",sep="")){
-        return(rootID)
+        return(root)
       }
       
       path.splits <- unlist(strsplit(itemPath, "Workspace"))
