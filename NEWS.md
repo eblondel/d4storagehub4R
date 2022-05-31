@@ -4,11 +4,13 @@
 
 * [#7](https://github.com/eblondel/d4storagehub4R/issues/7) Provide persistent base URL for workspace API endpoint
 * [#8](https://github.com/eblondel/d4storagehub4R/issues/8) Switch to new Social-networking API endpoint URL
+* [#13](https://github.com/eblondel/d4storagehub4R/issues/13) Support file upload to a folder ID (eg. VRE folder)
 
 **New features**
 
 * [#9](https://github.com/eblondel/d4storagehub4R/issues/9) Support `unshareItem` method
 * [#10](https://github.com/eblondel/d4storagehub4R/issues/10) Support `downloadItem` method
+* [#12](https://github.com/eblondel/d4storagehub4R/issues/12) Support Get method for VRE Folder ID
 
 ## [d4storagehub4R 0.3](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
