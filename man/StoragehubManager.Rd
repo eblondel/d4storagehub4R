@@ -522,13 +522,15 @@ unshare an item
 \subsection{Method \code{downloadItem()}}{
 Download item
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$downloadItem(path = NULL, wd = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$downloadItem(path = NULL, id = NULL, wd = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{path}}{path}
+
+\item{\code{id}}{id}
 
 \item{\code{wd}}{working directory where to download the item}
 }

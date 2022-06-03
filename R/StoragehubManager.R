@@ -686,11 +686,14 @@ StoragehubManager <-  R6Class("StoragehubManager",
     
     #'@description Download item
     #'@param path path
+    #'@param id id
     #'@param wd working directory where to download the item
-    downloadItem = function(path = NULL, wd = NULL){
+    downloadItem = function(path = NULL, id = NULL, wd = NULL){
       if(is.null(wd)) wd <- getwd()
       link <- NULL
-      pathID = self$searchWSItemID(itemPath = path, showHidden = TRUE)
+      pathID = NULL
+      if(!is.null(path)) self$searchWSItemID(itemPath = path, showHidden = TRUE)
+      if(!is.null(id)) pathID <- id
       if(is.null(pathID)){
         errMsg <- sprintf("No item for path '%s'", path)
         self$ERROR(errMsg)
