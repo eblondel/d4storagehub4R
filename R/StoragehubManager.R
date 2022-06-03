@@ -692,7 +692,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
       if(is.null(wd)) wd <- getwd()
       link <- NULL
       pathID = NULL
-      if(!is.null(path)) self$searchWSItemID(itemPath = path, showHidden = TRUE)
+      if(!is.null(path)) pathID <- self$searchWSItemID(itemPath = path, showHidden = TRUE)
       if(!is.null(id)) pathID <- id
       if(is.null(pathID)){
         errMsg <- sprintf("No item for path '%s'", path)
