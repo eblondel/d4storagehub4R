@@ -685,20 +685,12 @@ StoragehubManager <-  R6Class("StoragehubManager",
     },
     
     #'@description Download item
-    #'@param path path
-    #'@param id id
+    #'@param item item
     #'@param wd working directory where to download the item
-    downloadItem = function(path = NULL, id = NULL, wd = NULL){
+    downloadItem = function(item = NULL, wd = NULL){
       if(is.null(wd)) wd <- getwd()
       link <- NULL
-      pathID = NULL
-      if(!is.null(path)) pathID <- self$searchWSItemID(itemPath = path, showHidden = TRUE)
-      if(!is.null(id)) pathID <- id
-      if(is.null(pathID)){
-        errMsg <- sprintf("No item for path '%s'", path)
-        self$ERROR(errMsg)
-        stop(errMsg)
-      }
+      pathID <- item$id
       link_url <- sprintf("%s/items/%s/download?exclude=hl:accounting", private$url_storagehub, pathID)
       pl_req <- switch(private$token_type,
        "gcube" = {
@@ -711,10 +703,23 @@ StoragehubManager <-  R6Class("StoragehubManager",
       )
       if(!is.null(pl_req)){
         data <- httr::content(pl_req, type = "raw")
-        writeBin(data, file.path(wd, basename(path)))
-        return(file.path(wd, basename(path)))
+        writeBin(data, file.path(wd, basename(item$path)))
+        return(file.path(wd, basename(item$path)))
       }
       return(NULL)
+    },
+    
+    #'@description Download item by path
+    #'@param path path
+    #'@param wd working directory where to download the item
+    downloadItemByPath = function(path, wd = NULL){
+      item = self$searchWSItem(itemPath = path, showHidden = TRUE)
+      if(is.null(item)){
+        errMsg <- sprintf("No item for path '%s'", path)
+        self$ERROR(errMsg)
+        stop(errMsg)
+      }
+      self$downloadItem(item = item, wd = wd)
     },
     
     #'@description Get public file link

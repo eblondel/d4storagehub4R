@@ -59,6 +59,7 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \item \href{#method-StoragehubManager-shareItem}{\code{StoragehubManager$shareItem()}}
 \item \href{#method-StoragehubManager-unshareItem}{\code{StoragehubManager$unshareItem()}}
 \item \href{#method-StoragehubManager-downloadItem}{\code{StoragehubManager$downloadItem()}}
+\item \href{#method-StoragehubManager-downloadItemByPath}{\code{StoragehubManager$downloadItemByPath()}}
 \item \href{#method-StoragehubManager-getPublicFileLink}{\code{StoragehubManager$getPublicFileLink()}}
 \item \href{#method-StoragehubManager-clone}{\code{StoragehubManager$clone()}}
 }
@@ -522,15 +523,32 @@ unshare an item
 \subsection{Method \code{downloadItem()}}{
 Download item
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$downloadItem(path = NULL, id = NULL, wd = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$downloadItem(item = NULL, wd = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{item}}{item}
+
+\item{\code{wd}}{working directory where to download the item}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-StoragehubManager-downloadItemByPath"></a>}}
+\if{latex}{\out{\hypertarget{method-StoragehubManager-downloadItemByPath}{}}}
+\subsection{Method \code{downloadItemByPath()}}{
+Download item by path
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{StoragehubManager$downloadItemByPath(path, wd = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{path}}{path}
-
-\item{\code{id}}{id}
 
 \item{\code{wd}}{working directory where to download the item}
 }
