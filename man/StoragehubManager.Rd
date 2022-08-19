@@ -67,12 +67,12 @@ Emmanuel Blondel <emmanuel.blondel1@gmail.com>
 \if{html}{\out{
 <details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="ERROR"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-ERROR'><code>d4storagehub4R::d4storagehub4RLogger$ERROR()</code></a></li>
-<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="INFO"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-INFO'><code>d4storagehub4R::d4storagehub4RLogger$INFO()</code></a></li>
-<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="WARN"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-WARN'><code>d4storagehub4R::d4storagehub4RLogger$WARN()</code></a></li>
-<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClass"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-getClass'><code>d4storagehub4R::d4storagehub4RLogger$getClass()</code></a></li>
-<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClassName"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-getClassName'><code>d4storagehub4R::d4storagehub4RLogger$getClassName()</code></a></li>
-<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="logger"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-logger'><code>d4storagehub4R::d4storagehub4RLogger$logger()</code></a></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="ERROR"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-ERROR'><code>d4storagehub4R::d4storagehub4RLogger$ERROR()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="INFO"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-INFO'><code>d4storagehub4R::d4storagehub4RLogger$INFO()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="WARN"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-WARN'><code>d4storagehub4R::d4storagehub4RLogger$WARN()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClass"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-getClass'><code>d4storagehub4R::d4storagehub4RLogger$getClass()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="getClassName"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-getClassName'><code>d4storagehub4R::d4storagehub4RLogger$getClassName()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="d4storagehub4R" data-topic="d4storagehub4RLogger" data-id="logger"><a href='../../d4storagehub4R/html/d4storagehub4RLogger.html#method-d4storagehub4RLogger-logger'><code>d4storagehub4R::d4storagehub4RLogger$logger()</code></a></span></li>
 </ul>
 </details>
 }}
