@@ -722,6 +722,25 @@ StoragehubManager <-  R6Class("StoragehubManager",
       self$downloadItem(item = item, wd = wd)
     },
     
+    #'@description Get public file link by ID
+    #'@param pathID file item ID
+    #'@return the public file URL
+    getPublicFileLinkByID = function(pathID){
+      link <- NULL
+      link_url <- sprintf("%s/items/%s/publiclink?exclude=hl:accounting", private$url_storagehub, pathID)
+      pl_req <- switch(private$token_type,
+                       "gcube" = {
+                         link_url <-paste0(link_url, "&gcube-token=", self$getToken())
+                         httr::GET(link_url)
+                       },
+                       "jwt" = {
+                         httr::GET(link_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+                       }
+      )
+      if(!is.null(pl_req)) link <- httr::content(pl_req)
+      return(link)
+    },
+    
     #'@description Get public file link
     #'@param path file path
     #'@return the public file URL
@@ -733,17 +752,7 @@ StoragehubManager <-  R6Class("StoragehubManager",
         self$ERROR(errMsg)
         stop(errMsg)
       }
-      link_url <- sprintf("%s/items/%s/publiclink?exclude=hl:accounting", private$url_storagehub, pathID)
-      pl_req <- switch(private$token_type,
-        "gcube" = {
-          link_url <-paste0(link_url, "&gcube-token=", self$getToken())
-          httr::GET(link_url)
-        },
-        "jwt" = {
-          httr::GET(link_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
-        }
-      )
-      if(!is.null(pl_req)) link <- httr::content(pl_req)
+      link <- self$getPublicFileLinkByID(pathID = pathID)
       return(link)
     }
     

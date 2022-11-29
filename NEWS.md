@@ -1,10 +1,16 @@
+## [d4storagehub4R 0.4-2](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
+
+**New features**
+
+* [#15](https://github.com/eblondel/d4storagehub4R/issues/15) Support `getPublicFileLinkByID` method
+
 ## [d4storagehub4R 0.4-1](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
 **Enhancements**
 
 * [#14](https://github.com/eblondel/d4storagehub4R/issues/14) Upgrade roxygen2 7.2.1 to fix html issues
 
-## [d4storagehub4R 0.4](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
+## [d4storagehub4R 0.4](https://cran.r-project.org/src/contrib/Archive/d4storagehub4R/d4storagehub4R_0.4.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/d4storagehub4R/d4storagehub4R_0.4.tar.gz)
 
 **Enhancements**
 
