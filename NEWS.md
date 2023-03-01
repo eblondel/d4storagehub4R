@@ -1,3 +1,9 @@
+## [d4storagehub4R 0.4-3](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-unavailable-red.svg)](https://cran.r-project.org/package=d4storagehub4R)
+
+**Enhancements**
+
+* [#16](https://github.com/eblondel/d4storagehub4R/issues/16) fetchUserProfile should not show verbose curl logs if logger is not DEBUG
+
 ## [d4storagehub4R 0.4-2](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
 **New features**

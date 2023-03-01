@@ -112,11 +112,19 @@ StoragehubManager <-  R6Class("StoragehubManager",
       user_profile_req <- switch(private$token_type,
         "gcube" = {
           user_profile_url = paste0(private$url_homelibrary, "/people/profile?gcube-token=", self$getToken())
-          httr::GET(user_profile_url)
+          if(!self$verbose.debug){
+            httr::GET(user_profile_url)
+          }else{
+            httr::with_verbose(httr::GET(user_profile_url))
+          }
         },
         "jwt" = {
           user_profile_url = paste0(private$url_homelibrary, "/people/profile")
-          httr::with_verbose(httr::GET(user_profile_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken()))))
+          if(!self$verbose.debug){
+            httr::GET(user_profile_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken())))
+          }else{
+            httr::with_verbose(httr::GET(user_profile_url, httr::add_headers("Authorization" = paste("Bearer", self$getToken()))))
+          }
         }
       )
       
