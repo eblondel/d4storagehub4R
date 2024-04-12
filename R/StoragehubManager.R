@@ -127,12 +127,14 @@ StoragehubManager <-  R6Class("StoragehubManager",
           }
         }
       )
-      
-      httr::stop_for_status(user_profile_req)
-      if(!is.null(user_profile_req)){
+      if(httr::status_code(user_profile_req) == 200){
         user_profile = httr::content(user_profile_req)
         private$user_profile = user_profile$result
         private$user_workspace = paste0("/Home/", private$user_profile$username, "/Workspace")
+      }else{
+        errMsg = sprintf("Error while fetching user profile - status code: %s", httr::status_code(user_profile_req))
+        self$ERROR(errMsg)
+        stop(errMsg)
       }
     },
     
