@@ -1,10 +1,16 @@
+## [d4storagehub4R 0.4-4](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
+
+**Enhancements**
+
+* [#19](https://github.com/eblondel/d4storagehub4R/issues/19) Add control of user profile API availability
+
 ## [d4storagehub4R 0.4-3](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
 **Enhancements**
 
 * [#16](https://github.com/eblondel/d4storagehub4R/issues/16) fetchUserProfile should not show verbose curl logs if logger is not DEBUG
 
-## [d4storagehub4R 0.4-2](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
+## [d4storagehub4R 0.4-2](https://cran.r-project.org/src/contrib/Archive/d4storagehub4R/d4storagehub4R_0.4-2.tar.gz) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/src/contrib/Archive/d4storagehub4R/d4storagehub4R_0.4-2.tar.gz)
 
 **New features**
 
