@@ -5,10 +5,10 @@
 \alias{d4storagehub4RLogger}
 \title{d4storagehub4RLogger}
 \format{
-\code{\link{R6Class}} object.
+\code{\link[R6]{R6Class}} object.
 }
 \value{
-Object of \code{\link{R6Class}} for modelling a simple logger
+Object of \code{\link[R6]{R6Class}} for modelling a simple logger
 }
 \description{
 d4storagehub4RLogger

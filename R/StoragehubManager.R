@@ -2,7 +2,7 @@
 #' @docType class
 #' @export
 #' @keywords storagehub manager
-#' @return Object of \code{\link{R6Class}} for modelling a D4Science StoragehubManager
+#' @return Object of \code{\link[R6]{R6Class}} for modelling a D4Science StoragehubManager
 #' 
 #' @examples
 #' \dontrun{

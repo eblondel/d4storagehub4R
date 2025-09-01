@@ -5,7 +5,7 @@
 \alias{StoragehubManager}
 \title{StoragehubManager}
 \value{
-Object of \code{\link{R6Class}} for modelling a D4Science StoragehubManager
+Object of \code{\link[R6]{R6Class}} for modelling a D4Science StoragehubManager
 }
 \description{
 StoragehubManager

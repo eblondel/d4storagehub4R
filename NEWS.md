@@ -1,3 +1,7 @@
+## [d4storagehub4R 0.4-5](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
+
+* Fix Rdoc following CRAN request
+
 ## [d4storagehub4R 0.4-4](https://cran.r-project.org/package=d4storagehub4R) | [![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://cran.r-project.org/package=d4storagehub4R)
 
 **Enhancements**
