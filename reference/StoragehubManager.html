@@ -4,7 +4,7 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -18,7 +18,7 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">d4storagehub4R</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4-4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4-5</span>
       </span>
     </div>
 
@@ -32,20 +32,20 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/eblondel/d4storagehub4R/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>StoragehubManager</h1>
-    <small class="dont-index">Source: <a href="https://github.com/eblondel/d4storagehub4R/blob/HEAD/R/StoragehubManager.R" class="external-link"><code>R/StoragehubManager.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/eblondel/d4storagehub4R/blob/main/R/StoragehubManager.R" class="external-link"><code>R/StoragehubManager.R</code></a></small>
     <div class="hidden name"><code>StoragehubManager.Rd</code></div>
     </div>
 
@@ -57,9 +57,7 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
 
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>Object of <code>R6Class</code> for modelling a D4Science StoragehubManager</p>
+    <p>Object of <code><a href="https://r6.r-lib.org/reference/R6Class.html" class="external-link">R6Class</a></code> for modelling a D4Science StoragehubManager</p>
     </div>
     <div id="note">
     <h2>Note</h2>
@@ -76,7 +74,7 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
     </div>
     <div id="methods">
     <h2>Methods</h2>
-    
+
 <div class="section">
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
@@ -135,12 +133,12 @@ StoragehubManager"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/aja
 
 
 <dt><code>logger</code></dt>
-<dd><p>logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" (for complete 
+<dd><p>logger can be either NULL, "INFO" (with minimum logs), or "DEBUG" (for complete
 curl http calls logs)</p></dd>
 
 
 <dt><code>keyring_backend</code></dt>
-<dd><p>keyring backend to use.it can be set to use a different backend for storing 
+<dd><p>keyring backend to use.it can be set to use a different backend for storing
 the D4science gcube token with <span class="pkg">keyring</span> (Default value is 'env').</p></dd>
 
 
@@ -425,9 +423,9 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 
 </div><p></p><hr><a id="method-StoragehubManager-createFolder"></a><div class="section">
 <h3 id="method-createfolder-">Method <code>createFolder()</code><a class="anchor" aria-label="anchor" href="#method-createfolder-"></a></h3>
-<p>Creates a folder, given a folder path, a folder name/description. By default <code>recursive = TRUE</code> meaning 
+<p>Creates a folder, given a folder path, a folder name/description. By default <code>recursive = TRUE</code> meaning
    that a folder path matching nested folders will trigger all nested folders. Setting <code>recursive = FALSE</code>, the
-   folder creation will work only if the folder path matches an existing folder. The <code>hidden</code> (default 
+   folder creation will work only if the folder path matches an existing folder. The <code>hidden</code> (default
    <code>FALSE</code>) argument can be used to set hidden folders on the workspace. Using <code>folderID</code>, <code>recursive</code> will be
    set to <code>FALSE</code>.</p><div class="section">
 <h4 id="usage-16">Usage<a class="anchor" aria-label="anchor" href="#usage-16"></a></h4>
@@ -701,7 +699,8 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 <span class="r-in"><span>    logger <span class="op">=</span> <span class="st">"DEBUG"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [d4storagehub4R][INFO] StoragehubManager - Fetching user profile... </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in curl::curl_fetch_memory(url, handle = handle):</span> URL using bad/illegal format or missing URL</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in curl::curl_fetch_memory(url, handle = handle):</span> URL using bad/illegal format or missing URL:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> URL rejected: Malformed input to a URL function</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -718,15 +717,15 @@ the D4science gcube token with <span class="pkg">keyring</span> (Default value i
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
